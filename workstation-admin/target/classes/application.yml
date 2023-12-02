@@ -1,9 +1,0 @@
-spring:
-  main:
-    banner-mode: off
-
-# 日志配置
-logging:
-  level:
-    com.workstation: debug
-    org.springframework: warn
