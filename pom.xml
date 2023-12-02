@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.workstation</groupId>
+    <artifactId>workstation</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+
+    <name>workstation</name>
+    <description>workstation工作站</description>
+
+    <!--项目组件-->
+    <modules>
+        <module>workstation-admin</module>
+        <module>workstation-modules</module>
+        <module>workstation-common</module>
+        <module>workstation-generator</module>
+    </modules>
+
+    <!--版本定义-->
+    <properties>
+        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <workstation.version>0.0.1</workstation.version>
+    </properties>
+
+    <!--依赖声明-->
+    <dependencyManagement>
+        <dependencies>
+            <!-- SpringBoot的依赖配置-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.2.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--web服务入口-->
+            <dependency>
+                <groupId>com.workstation</groupId>
+                <artifactId>workstation-admin</artifactId>
+                <version>${workstation.version}</version>
+            </dependency>
+
+            <!--modules开发模块-->
+            <dependency>
+                <groupId>com.workstation</groupId>
+                <artifactId>workstation-modules</artifactId>
+                <version>${workstation.version}</version>
+            </dependency>
+
+            <!--common通用工具-->
+            <dependency>
+                <groupId>com.workstation</groupId>
+                <artifactId>workstation-common</artifactId>
+                <version>${workstation.version}</version>
+            </dependency>
+
+            <!--generator代码模块-->
+            <dependency>
+                <groupId>com.workstation</groupId>
+                <artifactId>workstation-generator</artifactId>
+                <version>${workstation.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!--仓库配置-->
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <!--插件仓库配置-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

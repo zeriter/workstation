@@ -1,0 +1,39 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.workstation</groupId>
+        <artifactId>workstation</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>workstation-admin</artifactId>
+    <name>workstation-admin</name>
+    <description>web服务入口</description>
+
+    <!--项目依赖-->
+    <dependencies>
+        <!-- SpringBoot Web容器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- SpringBoot 拦截器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.workstation</groupId>
+            <artifactId>workstation-modules</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.workstation</groupId>
+            <artifactId>workstation-generator</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
