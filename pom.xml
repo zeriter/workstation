@@ -25,6 +25,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <workstation.version>0.0.1</workstation.version>
+        <knife4j.version>4.3.0</knife4j.version>
+        <fastjson.version>2.0.41</fastjson.version>
     </properties>
 
     <!--依赖声明-->
@@ -37,6 +39,13 @@
                 <version>3.2.0</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!-- 阿里JSON解析器 -->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 
             <!--web服务入口-->
@@ -73,7 +82,7 @@
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
-            <version>4.3.0</version>
+            <version>${knife4j.version}</version>
         </dependency>
     </dependencies>
 
