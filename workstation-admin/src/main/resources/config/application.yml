@@ -4,6 +4,8 @@ server:
 spring:
   main:
     banner-mode: off
+  profiles:
+    active: mysql
 
 # 日志配置
 logging:
