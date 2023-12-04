@@ -22,4 +22,15 @@ public class Constants {
      */
     public static final String[] JSON_WHITELIST_STR = {"org.springframework", "com.workstation"};
 
+    /**
+     * captcha类型
+     */
+    public static final String CAPTCHA_MATH = "math";
+    public static final String CAPTCHA_CHAR = "char";
+
+    /**
+     * 验证码有效期（分钟）
+     */
+    public static final Integer CAPTCHA_EXPIRATION = 2;
+
 }

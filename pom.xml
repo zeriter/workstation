@@ -27,6 +27,7 @@
         <workstation.version>0.0.1</workstation.version>
         <knife4j.version>4.3.0</knife4j.version>
         <fastjson.version>2.0.41</fastjson.version>
+        <hutool.version>5.8.16</hutool.version>
     </properties>
 
     <!--依赖声明-->
@@ -46,6 +47,13 @@
                 <groupId>com.alibaba.fastjson2</groupId>
                 <artifactId>fastjson2</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+
+            <!--hutool工具包-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
 
             <!--web服务入口-->

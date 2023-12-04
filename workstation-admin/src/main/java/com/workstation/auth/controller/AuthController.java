@@ -1,8 +1,12 @@
 package com.workstation.auth.controller;
 
+import cn.hutool.core.lang.Dict;
+import com.workstation.auth.service.IAuthService;
+import com.workstation.common.annotation.OpenAuth;
 import com.workstation.common.param.R;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+    @Resource
+    private IAuthService authService;
+
     @Operation(summary = "获取验证码", description = "获取验证码")
     @GetMapping("/captcha")
-    public R<String> captcha() {
-        return R.success("sdf");
+    @OpenAuth
+    public R<Dict> captcha() {
+        return R.data(authService.captcha());
     }
 
     @Operation(summary = "用户登录", description = "用户登录")
