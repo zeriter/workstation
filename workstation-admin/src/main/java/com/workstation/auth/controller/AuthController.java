@@ -2,6 +2,7 @@ package com.workstation.auth.controller;
 
 import cn.hutool.core.lang.Dict;
 import com.workstation.auth.service.IAuthService;
+import com.workstation.common.annotation.OpenAuth;
 import com.workstation.common.param.R;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,6 +27,7 @@ public class AuthController {
 
     @Operation(summary = "获取验证码", description = "获取验证码")
     @GetMapping("/captcha")
+    @OpenAuth
     public R<Dict> captcha() {
         return R.data(authService.captcha());
     }
