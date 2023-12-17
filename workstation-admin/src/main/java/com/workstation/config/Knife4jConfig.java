@@ -1,12 +1,15 @@
 package com.workstation.config;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 
 /**
  * @author ZERITER-ZHANG
@@ -32,6 +35,15 @@ public class Knife4jConfig {
                                 .name("MIT")
                                 .url("https://github.com/zeriter/workstation/blob/main/LICENSE")))
                 .externalDocs(new ExternalDocumentation()
-                        .description("Github 地址").url("https://github.com/zeriter/workstation.git"));
+                        .description("Github 地址").url("https://github.com/zeriter/workstation.git"))
+                .components(new Components()
+                        .addSecuritySchemes(HttpHeaders.AUTHORIZATION,
+                                new SecurityScheme()
+                                        .name(HttpHeaders.AUTHORIZATION)
+                                        .type(SecurityScheme.Type.APIKEY)
+                                        .in(SecurityScheme.In.HEADER)
+                                        .scheme("Bearer")
+                                        .bearerFormat("JWT")
+                        ));
     }
 }

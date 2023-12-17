@@ -1,5 +1,6 @@
 package com.workstation;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +19,7 @@ import java.net.UnknownHostException;
  * @date 2023/12/2 16:56 周六
  */
 @SpringBootApplication
+@MapperScan("com.workstation.**.mapper")
 public class RunApp {
     private static final Logger logger = LoggerFactory.getLogger(RunApp.class);
 

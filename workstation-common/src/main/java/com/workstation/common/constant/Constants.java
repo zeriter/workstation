@@ -8,6 +8,11 @@ package com.workstation.common.constant;
  */
 public class Constants {
     /**
+     * 管理员
+     */
+    public static final String ROOT_ROLE_CODE = "ROOT";
+    public static final String ADMIN_ROLE_CODE = "ADMIN";
+    /**
      * 令牌
      */
     public static final String TOKEN = "token";

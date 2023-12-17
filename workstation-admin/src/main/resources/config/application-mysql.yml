@@ -1,8 +1,4 @@
 spring:
-  r2dbc:
-    url: r2dbc:pool:mysql://localhost:3306/workstation
-    username: root
-    password: root@123
   data:
     redis:
       host: localhost
@@ -10,3 +6,9 @@ spring:
       database: 0
       password: redis@123
       timeout: 10s
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/workstation?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: root@123

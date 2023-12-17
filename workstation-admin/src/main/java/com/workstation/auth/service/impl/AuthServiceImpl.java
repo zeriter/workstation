@@ -41,14 +41,14 @@ public class AuthServiceImpl implements IAuthService {
             String uuid = IdUtil.randomUUID();
             String verifyKey = CacheConstants.CAPTCHA_CODE_KEY + uuid;
             redisUtil.setCacheObject(verifyKey, code, Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
-            return Dict.create().set("uuid", uuid).set("img", captcha.getImageBase64());
+            return Dict.create().set("uuid", uuid).set("img", "data:image/gif;base64," + captcha.getImageBase64());
         } else {
             ShearCaptcha captcha = CaptchaUtil.createShearCaptcha(160, 60, 4, 4);
             String code = captcha.getCode();
             String uuid = IdUtil.randomUUID();
             String verifyKey = CacheConstants.CAPTCHA_CODE_KEY + uuid;
             redisUtil.setCacheObject(verifyKey, code, Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
-            return Dict.create().set("uuid", uuid).set("img", captcha.getImageBase64());
+            return Dict.create().set("uuid", uuid).set("img", "data:image/gif;base64," + captcha.getImageBase64());
         }
     }
 }
