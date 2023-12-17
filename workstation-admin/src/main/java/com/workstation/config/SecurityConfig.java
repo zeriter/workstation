@@ -1,7 +1,9 @@
 package com.workstation.config;
 
 import com.workstation.common.annotation.OpenAuth;
+import com.workstation.common.utils.RedisUtil;
 import com.workstation.enums.RequestMethodEnum;
+import com.workstation.filters.VerifyCodeFilter;
 import com.workstation.security.constants.SecurityConstants;
 import com.workstation.security.handler.MyAccessDeniedHandler;
 import com.workstation.security.handler.MyAuthenticationEntryPoint;
@@ -50,6 +52,8 @@ public class SecurityConfig {
     private JwtTokenProvider jwtTokenProvider;
     @Resource
     private ApplicationContext applicationContext;
+    @Resource
+    private RedisUtil redisUtil;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -67,6 +71,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
 
         ;
+        // 验证码校验过滤器
+        http.addFilterBefore(new VerifyCodeFilter(redisUtil), UsernamePasswordAuthenticationFilter.class);
         // JWT 校验过滤器
         http.addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 
