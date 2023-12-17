@@ -20,7 +20,7 @@ public class Constants {
     /**
      * 令牌前缀
      */
-    public static final String TOKEN_PREFIX = "Bearer ";
+    public static final String TOKEN_PREFIX = "Bearer";
 
     /**
      * 自动识别json对象白名单配置（仅允许解析的包名，范围越小越安全）

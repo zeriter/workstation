@@ -38,10 +38,10 @@ public class JwtTokenProvider {
     /**
      * 签名密钥，用于签名 Access Token
      */
-    @Value("${jwt.secret-key:123456}")
+    @Value("${jwt.secret-key}")
     private String secretKey;
 
-    @Value("${jwt.expiration:7200}")
+    @Value("${jwt.expiration}")
     private int expiration;
 
     /**

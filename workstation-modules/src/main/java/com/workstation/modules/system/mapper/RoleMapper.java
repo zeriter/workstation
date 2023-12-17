@@ -3,6 +3,7 @@ package com.workstation.modules.system.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.workstation.modules.system.domain.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Set;
 
@@ -22,5 +23,5 @@ public interface RoleMapper extends BaseMapper<Role> {
      * @param roles
      * @return
      */
-    Integer getMaximumDataScope(Set<String> roles);
+    Integer getMaximumDataScope(@Param("roles") Set<String> roles);
 }
