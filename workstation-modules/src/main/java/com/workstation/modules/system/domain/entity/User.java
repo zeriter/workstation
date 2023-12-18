@@ -2,6 +2,7 @@ package com.workstation.modules.system.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
  * @author ZERITER-ZHANG
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
  * @description user模型
  * @date 2023/12/9 18:09 周六
  */
+@TableName("sys_user")
 public class User extends BaseEntity {
     /**
      * 主键

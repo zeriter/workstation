@@ -1,8 +1,11 @@
 package com.workstation.modules.system.controller;
 
 import com.workstation.common.param.R;
+import com.workstation.modules.system.domain.result.RouteResult;
+import com.workstation.modules.system.service.IMenuService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +20,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/system/menu")
 public class MenuController {
+    @Resource
+    private IMenuService menuService;
 
     @Operation(summary = "保存菜单", description = "保存菜单")
     @PostMapping
@@ -58,5 +63,11 @@ public class MenuController {
     @GetMapping("/export")
     private R<List<String>> exportUsers() {
         return R.success();
+    }
+
+    @Operation(summary = "路由列表", description = "路由列表")
+    @GetMapping("/routes")
+    private R<List<RouteResult>> routes() {
+        return R.data(menuService.listRoutes());
     }
 }

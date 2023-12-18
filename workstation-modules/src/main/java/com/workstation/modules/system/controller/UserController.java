@@ -1,6 +1,7 @@
 package com.workstation.modules.system.controller;
 
 import com.workstation.common.param.R;
+import com.workstation.modules.system.domain.result.UserInfoResult;
 import com.workstation.modules.system.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -47,9 +48,9 @@ public class UserController {
     }
 
     @Operation(summary = "用户详情", description = "用户详情")
-    @GetMapping("/{userId}")
-    private R<List<String>> detail(@PathVariable(value = "userId", required = false) Long userId) {
-        return R.success();
+    @GetMapping("/info")
+    private R<UserInfoResult> details() {
+        return R.data(userService.details());
     }
 
     @Operation(summary = "导入用户", description = "导入用户")

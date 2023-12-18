@@ -38,4 +38,9 @@ public class Constants {
      */
     public static final Integer CAPTCHA_EXPIRATION = 2;
 
+    /**
+     * 根节点ID
+     */
+    public static final Long ROOT_NODE_ID = 0L;
+
 }

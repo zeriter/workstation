@@ -1,5 +1,6 @@
 package com.workstation.modules.system.service;
 
+import com.workstation.modules.system.domain.result.UserInfoResult;
 import com.workstation.modules.system.domain.security.AuthInfo;
 
 /**
@@ -10,4 +11,6 @@ import com.workstation.modules.system.domain.security.AuthInfo;
  */
 public interface IUserService {
     AuthInfo getUserAuthInfo(String username);
+
+    UserInfoResult details();
 }

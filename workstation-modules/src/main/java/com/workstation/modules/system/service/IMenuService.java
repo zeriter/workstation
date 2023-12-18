@@ -1,5 +1,8 @@
 package com.workstation.modules.system.service;
 
+import com.workstation.modules.system.domain.result.RouteResult;
+
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -10,4 +13,6 @@ import java.util.Set;
  */
 public interface IMenuService {
     Set<String> listRolePerms(Set<String> roles);
+
+    List<RouteResult> listRoutes();
 }
