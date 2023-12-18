@@ -11,6 +11,7 @@ import com.workstation.modules.system.domain.result.RouteResult;
 import com.workstation.modules.system.enums.MenuTypeEnum;
 import com.workstation.modules.system.mapper.MenuMapper;
 import com.workstation.modules.system.service.IMenuService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -44,6 +45,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
      * @return
      */
     @Override
+    @Cacheable(cacheNames = "menu", key = "'routes'")
     public List<RouteResult> listRoutes() {
         List<RouteBO> menuList = this.baseMapper.listRoutes();
         return buildRoutes(Constants.ROOT_NODE_ID, menuList);
