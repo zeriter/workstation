@@ -1,5 +1,7 @@
 package com.workstation.modules.system.service;
 
+import com.workstation.modules.system.domain.query.MenuQuery;
+import com.workstation.modules.system.domain.result.MenuResult;
 import com.workstation.modules.system.domain.result.RouteResult;
 
 import java.util.List;
@@ -15,4 +17,6 @@ public interface IMenuService {
     Set<String> listRolePerms(Set<String> roles);
 
     List<RouteResult> listRoutes();
+
+    List<MenuResult> listMenus(MenuQuery param);
 }

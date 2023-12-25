@@ -3,7 +3,6 @@ package com.workstation.modules.system.service.impl;
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.workstation.common.constant.CacheConstants;
 import com.workstation.common.utils.RedisUtil;
 import com.workstation.modules.system.domain.entity.User;
 import com.workstation.modules.system.domain.result.UserInfoResult;
@@ -16,7 +15,6 @@ import com.workstation.modules.system.utils.SecurityUtil;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -71,17 +69,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                 User::getNickname,
                 User::getAvatar
         ));
+        UserInfoResult result = new UserInfoResult(user.getId(), user.getUsername(), user.getNickname(), user.getAvatar(), null, null);
+
         Set<String> roles = SecurityUtil.getRoles();
+        result.setRoles(roles);
         // 用户权限集合
-        Set<String> perms = new HashSet<>();
         if (CollectionUtil.isNotEmpty(roles)) {
-            for (String role : roles) {
-                Set<String> rolePerms = redisUtil.getCacheSet(CacheConstants.ROLE_PERMS_PREFIX + role);
-                if (CollectionUtil.isNotEmpty(rolePerms)) {
-                    perms.addAll(rolePerms);
-                }
-            }
+            Set<String> perms = menuService.listRolePerms(roles);
+            result.setPerms(perms);
         }
-        return new UserInfoResult(user.getId(), user.getUsername(), user.getNickname(), user.getAvatar(), roles, perms);
+        return result;
     }
 }

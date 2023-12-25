@@ -24,6 +24,8 @@
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <workstation.version>0.0.1</workstation.version>
         <knife4j.version>4.3.0</knife4j.version>
         <fastjson.version>2.0.41</fastjson.version>
@@ -32,6 +34,7 @@
         <druid.version>1.2.16</druid.version>
         <mysql.version>8.0.28</mysql.version>
         <jjwt.version>0.11.5</jjwt.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
     </properties>
 
     <!--依赖声明-->
@@ -124,6 +127,18 @@
                 <groupId>com.workstation</groupId>
                 <artifactId>workstation-generator</artifactId>
                 <version>${workstation.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

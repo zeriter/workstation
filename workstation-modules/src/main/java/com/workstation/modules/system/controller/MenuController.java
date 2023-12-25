@@ -1,6 +1,8 @@
 package com.workstation.modules.system.controller;
 
 import com.workstation.common.param.R;
+import com.workstation.modules.system.domain.query.MenuQuery;
+import com.workstation.modules.system.domain.result.MenuResult;
 import com.workstation.modules.system.domain.result.RouteResult;
 import com.workstation.modules.system.service.IMenuService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,9 +44,9 @@ public class MenuController {
     }
 
     @Operation(summary = "菜单列表", description = "菜单列表")
-    @GetMapping("/list")
-    private R<List<String>> users() {
-        return R.success();
+    @GetMapping()
+    private R<List<MenuResult>> menus(MenuQuery param) {
+        return R.data(menuService.listMenus(param));
     }
 
     @Operation(summary = "菜单详情", description = "菜单详情")
