@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.workstation.modules.system.domain.entity.User;
 import com.workstation.modules.system.domain.security.AuthInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author ZERITER-ZHANG
@@ -13,5 +14,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
-    AuthInfo getUserAuthInfo(String username);
+    AuthInfo getUserAuthInfo(@Param("username") String username);
 }

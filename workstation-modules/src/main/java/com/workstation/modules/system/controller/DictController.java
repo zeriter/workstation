@@ -20,43 +20,43 @@ public class DictController {
 
     @Operation(summary = "保存字典", description = "保存字典")
     @PostMapping
-    private R<String> save() {
+    public R<String> save() {
         return R.success();
     }
 
     @Operation(summary = "删除字典", description = "删除字典")
     @DeleteMapping("/{userIds}")
-    private R<String> delete() {
+    public R<String> delete() {
         return R.success();
     }
 
     @Operation(summary = "修改字典", description = "修改字典")
     @PutMapping
-    private R<String> edit() {
+    public R<String> edit() {
         return R.success();
     }
 
     @Operation(summary = "字典列表", description = "字典列表")
     @GetMapping("/list")
-    private R<List<String>> users() {
+    public R<List<String>> users() {
         return R.success();
     }
 
     @Operation(summary = "字典详情", description = "字典详情")
     @GetMapping("/{userId}")
-    private R<List<String>> detail(@PathVariable(value = "userId", required = false) Long userId) {
+    public R<List<String>> detail(@PathVariable(value = "userId", required = false) Long userId) {
         return R.success();
     }
 
     @Operation(summary = "导入字典", description = "导入字典")
     @PostMapping("/import")
-    private R<String> importUsers() {
+    public R<String> importUsers() {
         return R.success();
     }
 
     @Operation(summary = "导出字典", description = "导出字典")
     @GetMapping("/export")
-    private R<List<String>> exportUsers() {
+    public R<List<String>> exportUsers() {
         return R.success();
     }
 }

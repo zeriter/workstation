@@ -20,43 +20,43 @@ public class RoleController {
 
     @Operation(summary = "保存角色", description = "保存角色")
     @PostMapping
-    private R<String> save() {
+    public R<String> save() {
         return R.success();
     }
 
     @Operation(summary = "删除角色", description = "删除角色")
     @DeleteMapping("/{userIds}")
-    private R<String> delete() {
+    public R<String> delete() {
         return R.success();
     }
 
     @Operation(summary = "修改角色", description = "修改角色")
     @PutMapping
-    private R<String> edit() {
+    public R<String> edit() {
         return R.success();
     }
 
     @Operation(summary = "角色列表", description = "角色列表")
     @GetMapping("/list")
-    private R<List<String>> users() {
+    public R<List<String>> users() {
         return R.success();
     }
 
     @Operation(summary = "角色详情", description = "角色详情")
     @GetMapping("/{userId}")
-    private R<List<String>> detail(@PathVariable(value = "userId", required = false) Long userId) {
+    public R<List<String>> detail(@PathVariable(value = "userId", required = false) Long userId) {
         return R.success();
     }
 
     @Operation(summary = "导入角色", description = "导入角色")
     @PostMapping("/import")
-    private R<String> importUsers() {
+    public R<String> importUsers() {
         return R.success();
     }
 
     @Operation(summary = "导出角色", description = "导出角色")
     @GetMapping("/export")
-    private R<List<String>> exportUsers() {
+    public R<List<String>> exportUsers() {
         return R.success();
     }
 }

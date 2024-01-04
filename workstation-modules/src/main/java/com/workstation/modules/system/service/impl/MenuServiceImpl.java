@@ -7,9 +7,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.workstation.common.constant.Constants;
 import com.workstation.common.enums.StatusEnum;
+import com.workstation.common.param.Option;
 import com.workstation.modules.system.converter.MenuConverter;
 import com.workstation.modules.system.domain.bo.RouteBO;
 import com.workstation.modules.system.domain.entity.Menu;
+import com.workstation.modules.system.domain.form.MenuForm;
 import com.workstation.modules.system.domain.query.MenuQuery;
 import com.workstation.modules.system.domain.result.MenuResult;
 import com.workstation.modules.system.domain.result.RouteResult;
@@ -17,6 +19,7 @@ import com.workstation.modules.system.enums.MenuTypeEnum;
 import com.workstation.modules.system.mapper.MenuMapper;
 import com.workstation.modules.system.service.IMenuService;
 import jakarta.annotation.Resource;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -91,6 +94,100 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         return rootIds.stream()
                 .flatMap(rootId -> buildMenuTree(rootId, menus).stream())
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * 菜单下拉数据
+     *
+     * @return
+     */
+    @Override
+    public List<Option> listMenuOptions() {
+        List<Menu> menuList = this.list(new LambdaQueryWrapper<Menu>()
+                .orderByAsc(Menu::getSort));
+        return buildMenuOptions(Constants.ROOT_NODE_ID, menuList);
+    }
+
+    /**
+     * 新增/修改菜单
+     */
+    @Override
+    @CacheEvict(cacheNames = "menu", key = "'routes'")
+    public Boolean saveMenu(MenuForm menuForm) {
+        String path = menuForm.getPath();
+        MenuTypeEnum menuType = menuForm.getType();
+
+        // 如果是目录
+        if (menuType == MenuTypeEnum.CATALOG) {
+            if (menuForm.getParentId() == 0 && !path.startsWith("/")) {
+                menuForm.setPath("/" + path); // 一级目录需以 / 开头
+            }
+            menuForm.setComponent("Layout");
+        }
+        // 如果是外链
+        else if (menuType == MenuTypeEnum.EXTLINK) {
+            menuForm.setComponent(null);
+        }
+
+        Menu entity = menuConverter.form2Entity(menuForm);
+        String treePath = generateMenuTreePath(menuForm.getParentId());
+        entity.setTreePath(treePath);
+
+        return this.saveOrUpdate(entity);
+    }
+
+    @Override
+    public MenuForm getMenuForm(Long id) {
+        Menu entity = this.getById(id);
+        return menuConverter.entity2Form(entity);
+    }
+
+    @Override
+    @CacheEvict(cacheNames = "menu", key = "'routes'")
+    public Boolean deleteMenu(Long id) {
+        return this.remove(new LambdaQueryWrapper<Menu>()
+                .eq(Menu::getId, id)
+                .or()
+                .apply("CONCAT (',',tree_path,',') LIKE CONCAT('%,',{0},',%')", id));
+    }
+
+    /**
+     * 部门路径生成
+     *
+     * @param parentId
+     * @return
+     */
+    private String generateMenuTreePath(Long parentId) {
+        if (Constants.ROOT_NODE_ID.equals(parentId)) {
+            return String.valueOf(parentId);
+        } else {
+            Menu parent = this.getById(parentId);
+            return parent != null ? parent.getTreePath() + "," + parent.getId() : null;
+        }
+    }
+
+    /**
+     * 递归生成菜单下拉层级列表
+     *
+     * @param parentId
+     * @param menuList
+     * @return
+     */
+    private List<Option> buildMenuOptions(Long parentId, List<Menu> menuList) {
+        List<Option> menuOptions = new ArrayList<>();
+
+        for (Menu menu : menuList) {
+            if (menu.getParentId().equals(parentId)) {
+                Option option = new Option(menu.getId(), menu.getName());
+                List<Option> subMenuOptions = buildMenuOptions(menu.getId(), menuList);
+                if (!subMenuOptions.isEmpty()) {
+                    option.setChildren(subMenuOptions);
+                }
+                menuOptions.add(option);
+            }
+        }
+
+        return menuOptions;
     }
 
     /**
