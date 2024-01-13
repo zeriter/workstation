@@ -14,7 +14,6 @@
     <!--项目依赖-->
     <dependencies>
 
-        <!-- SpringBoot Web容器 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
