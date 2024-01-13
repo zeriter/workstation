@@ -36,7 +36,7 @@ public class VerifyCodeFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-// 检验登录接口的验证码
+        // 检验登录接口的验证码
         if (LOGIN_PATH_REQUEST_MATCHER.matches(request)) {
             // 请求中的验证码
             String verifyCode = request.getParameter(CAPTCHA_CODE_PARAM_NAME);

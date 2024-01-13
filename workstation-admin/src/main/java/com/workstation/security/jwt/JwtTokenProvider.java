@@ -52,7 +52,6 @@ public class JwtTokenProvider {
 
     /**
      * 初始化方法
-     * <p>
      * 对签名密钥进行 Base64 编码
      */
     @PostConstruct
@@ -62,27 +61,21 @@ public class JwtTokenProvider {
 
     /**
      * 创建Token
-     * <p>
-     * 认证成功后的用户信息会被封装到 Authentication 对象中，然后通过 JwtTokenProvider#createToken(Authentication) 方法创建 Token 字符串
-     *
      * @param authentication 用户认证信息
      * @return Token 字符串
      */
     public String createToken(Authentication authentication) {
         Claims claims = Jwts.claims().setSubject(authentication.getName());
-
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         claims.put(JwtClaimConstants.USER_ID, userDetails.getUserId()); // 用户ID
         claims.put(JwtClaimConstants.USERNAME, claims.getSubject()); // 用户名
         claims.put(JwtClaimConstants.DEPT_ID, userDetails.getDeptId()); // 部门ID
         claims.put(JwtClaimConstants.DATA_SCOPE, userDetails.getDataScope()); // 数据权限范围
-
         // claims 中添加角色信息
         Set<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toSet());
         claims.put(JwtClaimConstants.AUTHORITIES, roles);
-
         Date now = new Date();
         Date expirationTime = new Date(now.getTime() + expiration * 1000L);
         return Jwts.builder()
@@ -95,19 +88,16 @@ public class JwtTokenProvider {
 
     /**
      * 根据给定的令牌解析出用户认证信息
-     *
      * @param token JWT Token
      * @return 用户认证信息
      */
     public Authentication getAuthentication(String token) {
         Claims claims = this.getTokenClaims(token);
-
         UserDetails userDetails = new UserDetails();
         userDetails.setUserId(Convert.toLong(claims.get(JwtClaimConstants.USER_ID))); // 用户ID
         userDetails.setUsername(Convert.toStr(claims.get(JwtClaimConstants.USERNAME))); // 用户名
         userDetails.setDeptId(Convert.toLong(claims.get(JwtClaimConstants.DEPT_ID))); // 部门ID
         userDetails.setDataScope(Convert.toInt(claims.get(JwtClaimConstants.DATA_SCOPE))); // 数据权限范围
-
         // 角色集合
         Set<SimpleGrantedAuthority> authorities = ((ArrayList<String>) claims.get(JwtClaimConstants.AUTHORITIES))
                 .stream()
@@ -117,10 +107,8 @@ public class JwtTokenProvider {
         return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
     }
 
-
     /**
      * 从请求头中获取Token
-     *
      * @param req 请求对象
      * @return Token 字符串
      */
@@ -134,7 +122,6 @@ public class JwtTokenProvider {
 
     /**
      * 校验Token是否有效
-     *
      * @param token JWT Token
      * @return 是否有效
      */
@@ -145,9 +132,8 @@ public class JwtTokenProvider {
 
     /**
      * 获取Token中的用户名
-     *
      * @param token Token
-     * @return
+     * @return username
      */
     public String getUsername(String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
@@ -155,9 +141,8 @@ public class JwtTokenProvider {
 
     /**
      * 获取Token的Claims，claims中包含了用户的基本信息
-     *
      * @param token
-     * @return
+     * @return Claims
      */
     public Claims getTokenClaims(String token) {
         return Jwts.parserBuilder().setSigningKey(this.getSecretKeyBytes()).build().parseClaimsJws(token).getBody();
@@ -165,7 +150,6 @@ public class JwtTokenProvider {
 
     /**
      * 获取签名密钥的字节数组
-     *
      * @return 签名密钥的字节数组
      */
     public byte[] getSecretKeyBytes() {

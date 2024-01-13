@@ -13,7 +13,6 @@
     <property name="log.pattern"
               value="%d{[yyyy-MM-dd hh:mm:ss]} [%5p] [%15.15t] %-40.40logger{40} : %m%n%wEx"/>
 
-
     <!-- 控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

@@ -1,9 +1,12 @@
+# 设置端口
 server:
   port: 8080
 
 spring:
+  # 关闭logo
   main:
     banner-mode: off
+  # 激活文件
   profiles:
     active: mysql
 

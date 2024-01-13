@@ -9,15 +9,11 @@ package com.workstation.common.param;
 public interface IResultCode {
     /**
      * 获取统一信息
-     *
-     * @return string
      */
     String getMessage();
 
     /**
      * 获取统一code
-     *
-     * @return int
      */
     int getCode();
 }

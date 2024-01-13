@@ -12,6 +12,7 @@ public class Constants {
      */
     public static final String ROOT_ROLE_CODE = "ROOT";
     public static final String ADMIN_ROLE_CODE = "ADMIN";
+
     /**
      * 令牌
      */

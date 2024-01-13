@@ -49,10 +49,6 @@ public class GlobalExceptionHandler {
 
     /**
      * RequestParam参数的校验
-     *
-     * @param e
-     * @param <T>
-     * @return
      */
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -64,10 +60,6 @@ public class GlobalExceptionHandler {
 
     /**
      * RequestBody参数的校验
-     *
-     * @param e
-     * @param <T>
-     * @return
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -182,9 +174,6 @@ public class GlobalExceptionHandler {
 
     /**
      * 传参类型错误时，用于消息转换
-     *
-     * @param throwable 异常
-     * @return 错误信息
      */
     private String convertMessage(Throwable throwable) {
         String error = throwable.toString();

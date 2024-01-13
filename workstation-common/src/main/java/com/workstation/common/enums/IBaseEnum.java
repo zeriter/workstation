@@ -15,11 +15,6 @@ public interface IBaseEnum<T> {
 
     /**
      * 根据值获取枚举
-     *
-     * @param value
-     * @param clazz
-     * @param <E>   枚举
-     * @return
      */
     static <E extends Enum<E> & IBaseEnum> E getEnumByValue(Object value, Class<E> clazz) {
         Objects.requireNonNull(value);
@@ -33,11 +28,6 @@ public interface IBaseEnum<T> {
 
     /**
      * 根据文本标签获取值
-     *
-     * @param value
-     * @param clazz
-     * @param <E>
-     * @return
      */
     static <E extends Enum<E> & IBaseEnum> String getLabelByValue(Object value, Class<E> clazz) {
         Objects.requireNonNull(value);
@@ -56,11 +46,6 @@ public interface IBaseEnum<T> {
 
     /**
      * 根据文本标签获取值
-     *
-     * @param label
-     * @param clazz
-     * @param <E>
-     * @return
      */
     static <E extends Enum<E> & IBaseEnum> Object getValueByLabel(String label, Class<E> clazz) {
         Objects.requireNonNull(label);

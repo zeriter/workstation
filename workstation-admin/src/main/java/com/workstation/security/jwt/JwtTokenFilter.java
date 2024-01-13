@@ -45,7 +45,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
         } catch (BusinessException ex) {
-            //this is very important, since it guarantees the user is not authenticated at all
             SecurityContextHolder.clearContext();
             ResponseUtils.writeErrMsg(response, (ResultCode) ex.getResultCode());
             return;
