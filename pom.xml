@@ -71,18 +71,21 @@
                 <version>${mybatis-plus.version}</version>
             </dependency>
 
+            <!--druid 连接池-->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
 
+            <!--mysql驱动-->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
 
+            <!--jjwt依赖-->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-api</artifactId>
@@ -94,7 +97,6 @@
                 <version>${jjwt.version}</version>
                 <scope>runtime</scope>
             </dependency>
-
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt-jackson</artifactId>
@@ -130,18 +132,19 @@
                 <version>${workstation.version}</version>
             </dependency>
 
+            <!--mapstruct 类转化工具-->
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${mapstruct.version}</version>
             </dependency>
 
+            <!--easyexcel 工具-->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>easyexcel</artifactId>
@@ -151,6 +154,7 @@
     </dependencyManagement>
 
     <dependencies>
+        <!--文档依赖-->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
@@ -159,6 +163,7 @@
     </dependencies>
 
     <build>
+        <!--maven 插件-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
