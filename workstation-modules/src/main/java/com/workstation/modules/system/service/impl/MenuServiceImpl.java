@@ -19,7 +19,6 @@ import com.workstation.modules.system.enums.MenuTypeEnum;
 import com.workstation.modules.system.mapper.MenuMapper;
 import com.workstation.modules.system.service.IMenuService;
 import jakarta.annotation.Resource;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -111,7 +110,6 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
      * 新增/修改菜单
      */
     @Override
-    @CacheEvict(cacheNames = "menu", key = "'routes'")
     public Boolean saveMenu(MenuForm menuForm) {
         String path = menuForm.getPath();
         MenuTypeEnum menuType = menuForm.getType();
@@ -142,7 +140,6 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     }
 
     @Override
-    @CacheEvict(cacheNames = "menu", key = "'routes'")
     public Boolean deleteMenu(Long id) {
         return this.remove(new LambdaQueryWrapper<Menu>()
                 .eq(Menu::getId, id)
