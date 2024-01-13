@@ -1,8 +1,12 @@
 package com.workstation.modules.system.controller;
 
+import com.workstation.common.param.Option;
 import com.workstation.common.param.R;
+import com.workstation.modules.system.service.IDictService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +21,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/system/dict")
 public class DictController {
+    @Resource
+    private IDictService dictService;
 
     @Operation(summary = "保存字典", description = "保存字典")
     @PostMapping
@@ -58,5 +64,11 @@ public class DictController {
     @GetMapping("/export")
     public R<List<String>> exportUsers() {
         return R.success();
+    }
+
+    @Operation(summary = "字典下拉列表", description = "字典下拉列表")
+    @GetMapping("/{typeCode}/options")
+    public R<List<Option>> listDictOptions(@Parameter(description = "字典类型编码") @PathVariable String typeCode) {
+        return R.data(dictService.listDictOptions(typeCode));
     }
 }

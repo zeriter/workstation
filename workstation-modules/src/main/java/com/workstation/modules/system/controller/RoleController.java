@@ -1,8 +1,15 @@
 package com.workstation.modules.system.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.workstation.common.param.Option;
 import com.workstation.common.param.R;
+import com.workstation.modules.system.domain.query.RolePageQuery;
+import com.workstation.modules.system.domain.result.RolePageResult;
+import com.workstation.modules.system.service.IRoleService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +24,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/system/role")
 public class RoleController {
+    @Resource
+    private IRoleService roleService;
 
     @Operation(summary = "保存角色", description = "保存角色")
     @PostMapping
@@ -37,9 +46,9 @@ public class RoleController {
     }
 
     @Operation(summary = "角色列表", description = "角色列表")
-    @GetMapping("/list")
-    public R<List<String>> users() {
-        return R.success();
+    @GetMapping("/page")
+    public R<IPage<RolePageResult>> getRolePage(@ParameterObject RolePageQuery queryParams) {
+        return R.data(roleService.getRolePage(queryParams));
     }
 
     @Operation(summary = "角色详情", description = "角色详情")
@@ -58,5 +67,11 @@ public class RoleController {
     @GetMapping("/export")
     public R<List<String>> exportUsers() {
         return R.success();
+    }
+
+    @Operation(summary = "角色下拉列表", description = "角色下拉列表")
+    @GetMapping("/options")
+    public R<List<Option>> listRoleOptions() {
+        return R.data(roleService.listRoleOptions());
     }
 }

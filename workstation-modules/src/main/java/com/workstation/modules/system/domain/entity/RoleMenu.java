@@ -1,5 +1,6 @@
 package com.workstation.modules.system.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
@@ -10,7 +11,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
  */
 @TableName(value = "sys_role_menu")
 public class RoleMenu {
-
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
     /**
      * 角色ID
      */

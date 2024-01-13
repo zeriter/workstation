@@ -20,7 +20,6 @@ import com.workstation.modules.system.mapper.MenuMapper;
 import com.workstation.modules.system.service.IMenuService;
 import jakarta.annotation.Resource;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -32,7 +31,7 @@ import java.util.stream.Collectors;
 /**
  * @author ZERITER-ZHANG
  * @version 0.0.1
- * @description 菜单接口处理类
+ * @description 菜单业务处理类
  * @date 2023/12/2 19:36 周六
  */
 @Service
@@ -57,7 +56,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
      * @return
      */
     @Override
-    @Cacheable(cacheNames = "menu", key = "'routes'")
+//    @Cacheable(cacheNames = "menu", key = "'routes'")
     public List<RouteResult> listRoutes() {
         List<RouteBO> menuList = this.baseMapper.listRoutes();
         return buildRoutes(Constants.ROOT_NODE_ID, menuList);

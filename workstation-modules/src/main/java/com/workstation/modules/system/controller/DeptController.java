@@ -1,8 +1,11 @@
 package com.workstation.modules.system.controller;
 
+import com.workstation.common.param.Option;
 import com.workstation.common.param.R;
+import com.workstation.modules.system.service.IDeptService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +20,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/system/dept")
 public class DeptController {
+    @Resource
+    private IDeptService deptService;
 
     @Operation(summary = "保存部门", description = "保存部门")
     @PostMapping
@@ -58,5 +63,11 @@ public class DeptController {
     @GetMapping("/export")
     public R<List<String>> exportUsers() {
         return R.success();
+    }
+
+    @Operation(summary = "部门下拉选项", description = "部门下拉选项")
+    @GetMapping("/options")
+    public R<List<Option>> listDeptOptions() {
+        return R.data(deptService.listDeptOptions());
     }
 }

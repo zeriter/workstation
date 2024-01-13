@@ -58,25 +58,13 @@ public class MenuController {
         return R.data(menuService.getMenuForm(id));
     }
 
-    @Operation(summary = "导入菜单", description = "导入菜单")
-    @PostMapping("/import")
-    public R<String> importUsers() {
-        return R.success();
-    }
-
-    @Operation(summary = "导出菜单", description = "导出菜单")
-    @GetMapping("/export")
-    public R<List<String>> exportUsers() {
-        return R.success();
-    }
-
     @Operation(summary = "路由列表", description = "路由列表")
     @GetMapping("/routes")
     public R<List<RouteResult>> routes() {
         return R.data(menuService.listRoutes());
     }
 
-    @Operation(summary = "菜单下拉列表")
+    @Operation(summary = "菜单下拉列表", description = "菜单下拉列表")
     @GetMapping("/options")
     public R<List<Option>> listMenuOptions() {
         List<Option> menus = menuService.listMenuOptions();

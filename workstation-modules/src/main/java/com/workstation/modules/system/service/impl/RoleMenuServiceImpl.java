@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author ZERITER-ZHANG
  * @version 0.0.1
- * @description 用户菜单关系实现类
+ * @description 用户菜单业务处理类
  * @date 2023/12/31 16:55 星期日
  */
 @Service

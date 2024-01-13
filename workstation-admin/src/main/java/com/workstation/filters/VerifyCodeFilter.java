@@ -28,7 +28,7 @@ public class VerifyCodeFilter extends OncePerRequestFilter {
     public static final String CAPTCHA_CODE_PARAM_NAME = "captchaCode";
     public static final String CAPTCHA_KEY_PARAM_NAME = "captchaKey";
     private static final AntPathRequestMatcher LOGIN_PATH_REQUEST_MATCHER = new AntPathRequestMatcher(SecurityConstants.LOGIN_PATH, "POST");
-    private RedisUtil redisUtil;
+    private final RedisUtil redisUtil;
 
     public VerifyCodeFilter(RedisUtil redisUtil) {
         this.redisUtil = redisUtil;

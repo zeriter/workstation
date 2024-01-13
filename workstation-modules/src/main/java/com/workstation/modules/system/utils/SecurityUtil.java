@@ -118,10 +118,7 @@ public class SecurityUtil {
     public static boolean isRoot() {
         Set<String> roles = getRoles();
 
-        if (roles.contains(Constants.ROOT_ROLE_CODE)) {
-            return true;
-        }
-        return false;
+        return roles.contains(Constants.ROOT_ROLE_CODE);
     }
 
 

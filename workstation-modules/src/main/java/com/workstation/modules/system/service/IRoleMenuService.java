@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author ZERITER-ZHANG
  * @version 0.0.1
- * @description 用户菜单关系
+ * @description 用户菜单业务处理类
  * @date 2023/12/31 16:48 星期日
  */
 public interface IRoleMenuService extends IService<RoleMenu> {

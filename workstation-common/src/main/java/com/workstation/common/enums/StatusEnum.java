@@ -11,9 +11,9 @@ public enum StatusEnum implements IBaseEnum<Integer> {
     ENABLE(1, "启用"),
     DISABLE(0, "禁用");
 
-    private Integer value;
+    private final Integer value;
 
-    private String label;
+    private final String label;
 
     StatusEnum(Integer value, String label) {
         this.value = value;

@@ -55,7 +55,7 @@ public class R<T> implements Serializable {
     }
 
     public static boolean isSuccess(@Nullable R<?> result) {
-        return (Boolean) Optional.ofNullable(result).map((x) -> {
+        return Optional.ofNullable(result).map((x) -> {
             return ObjectUtil.nullSafeEquals(ResultCode.SUCCESS.code, x.code);
         }).orElse(Boolean.FALSE);
     }
@@ -97,7 +97,7 @@ public class R<T> implements Serializable {
     }
 
     public static <T> R<T> fail(int code, String msg) {
-        return new R(code, (Object) null, msg);
+        return new R(code, null, msg);
     }
 
     public static <T> R<T> fail(IResultCode resultCode) {

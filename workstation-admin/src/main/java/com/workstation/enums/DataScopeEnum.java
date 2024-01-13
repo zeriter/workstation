@@ -18,9 +18,9 @@ public enum DataScopeEnum implements IBaseEnum<Integer> {
     DEPT(2, "本部门数据"),
     SELF(3, "本人数据");
 
-    private Integer value;
+    private final Integer value;
 
-    private String label;
+    private final String label;
 
     DataScopeEnum(Integer value, String label) {
         this.value = value;
