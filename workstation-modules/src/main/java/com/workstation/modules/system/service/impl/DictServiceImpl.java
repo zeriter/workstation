@@ -103,7 +103,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
         //
         List<Long> ids = Arrays.asList(idsStr.split(","))
                 .stream()
-                .map(id -> Long.parseLong(id))
+                .map(Long::parseLong)
                 .collect(Collectors.toList());
         return this.removeByIds(ids);
     }
