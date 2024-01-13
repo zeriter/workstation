@@ -61,4 +61,10 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
         }
         return true;
     }
+
+    @Override
+    public boolean isRoleAssignedToUser(Long roleId) {
+        int count = this.baseMapper.countUsersForRole(roleId);
+        return count > 0;
+    }
 }

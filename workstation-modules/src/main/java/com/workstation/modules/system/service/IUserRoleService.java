@@ -13,4 +13,6 @@ import java.util.List;
  */
 public interface IUserRoleService extends IService<UserRole> {
     boolean saveUserRoles(Long id, List<Long> roleIds);
+
+    boolean isRoleAssignedToUser(Long roleId);
 }

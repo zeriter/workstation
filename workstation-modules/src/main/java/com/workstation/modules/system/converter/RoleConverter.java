@@ -31,4 +31,5 @@ public interface RoleConverter {
 
     Role form2Entity(RoleForm roleForm);
 
+    RoleForm entity2Form(Role entity);
 }

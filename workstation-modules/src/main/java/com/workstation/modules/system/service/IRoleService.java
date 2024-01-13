@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.workstation.common.param.Option;
 import com.workstation.modules.system.domain.entity.Role;
+import com.workstation.modules.system.domain.form.RoleForm;
 import com.workstation.modules.system.domain.query.RolePageQuery;
 import com.workstation.modules.system.domain.result.RolePageResult;
 
@@ -30,4 +31,14 @@ public interface IRoleService extends IService<Role> {
     List<Option> listRoleOptions();
 
     IPage<RolePageResult> getRolePage(RolePageQuery queryParams);
+
+    Boolean saveRole(RoleForm roleForm);
+
+    RoleForm getRoleForm(Long roleId);
+
+    Boolean deleteRoles(String ids);
+
+    List<Long> getRoleMenuIds(Long roleId);
+
+    boolean assignMenusToRole(Long roleId, List<Long> menuIds);
 }
