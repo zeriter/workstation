@@ -10,8 +10,7 @@ public class Constants {
     /**
      * 管理员
      */
-    public static final String ROOT_ROLE_CODE = "ROOT";
-    public static final String ADMIN_ROLE_CODE = "ADMIN";
+    public static final String ROOT_ROLE_CODE = "ADMIN";
 
     /**
      * 令牌
