@@ -11,7 +11,7 @@
  Target Server Version : 80034 (8.0.34)
  File Encoding         : 65001
 
- Date: 16/01/2024 00:05:01
+ Date: 16/01/2024 00:07:37
 */
 
 SET NAMES utf8mb4;
@@ -297,91 +297,91 @@ CREATE TABLE `sys_role_menu`
 -- Records of sys_role_menu
 -- ----------------------------
 INSERT INTO `sys_role_menu`
-VALUES (2, 1);
+VALUES (1, 1);
 INSERT INTO `sys_role_menu`
-VALUES (2, 2);
+VALUES (1, 2);
 INSERT INTO `sys_role_menu`
-VALUES (2, 31);
+VALUES (1, 31);
 INSERT INTO `sys_role_menu`
-VALUES (2, 32);
+VALUES (1, 32);
 INSERT INTO `sys_role_menu`
-VALUES (2, 33);
+VALUES (1, 33);
 INSERT INTO `sys_role_menu`
-VALUES (2, 88);
+VALUES (1, 88);
 INSERT INTO `sys_role_menu`
-VALUES (2, 3);
+VALUES (1, 3);
 INSERT INTO `sys_role_menu`
-VALUES (2, 70);
+VALUES (1, 70);
 INSERT INTO `sys_role_menu`
-VALUES (2, 71);
+VALUES (1, 71);
 INSERT INTO `sys_role_menu`
-VALUES (2, 72);
+VALUES (1, 72);
 INSERT INTO `sys_role_menu`
-VALUES (2, 4);
+VALUES (1, 4);
 INSERT INTO `sys_role_menu`
-VALUES (2, 73);
+VALUES (1, 73);
 INSERT INTO `sys_role_menu`
-VALUES (2, 74);
+VALUES (1, 74);
 INSERT INTO `sys_role_menu`
-VALUES (2, 75);
+VALUES (1, 75);
 INSERT INTO `sys_role_menu`
-VALUES (2, 5);
+VALUES (1, 5);
 INSERT INTO `sys_role_menu`
-VALUES (2, 76);
+VALUES (1, 76);
 INSERT INTO `sys_role_menu`
-VALUES (2, 77);
+VALUES (1, 77);
 INSERT INTO `sys_role_menu`
-VALUES (2, 78);
+VALUES (1, 78);
 INSERT INTO `sys_role_menu`
-VALUES (2, 6);
+VALUES (1, 6);
 INSERT INTO `sys_role_menu`
-VALUES (2, 79);
+VALUES (1, 79);
 INSERT INTO `sys_role_menu`
-VALUES (2, 81);
+VALUES (1, 81);
 INSERT INTO `sys_role_menu`
-VALUES (2, 84);
+VALUES (1, 84);
 INSERT INTO `sys_role_menu`
-VALUES (2, 85);
+VALUES (1, 85);
 INSERT INTO `sys_role_menu`
-VALUES (2, 86);
+VALUES (1, 86);
 INSERT INTO `sys_role_menu`
-VALUES (2, 87);
+VALUES (1, 87);
 INSERT INTO `sys_role_menu`
-VALUES (2, 40);
+VALUES (1, 40);
 INSERT INTO `sys_role_menu`
-VALUES (2, 41);
+VALUES (1, 41);
 INSERT INTO `sys_role_menu`
-VALUES (2, 36);
+VALUES (1, 36);
 INSERT INTO `sys_role_menu`
-VALUES (2, 37);
+VALUES (1, 37);
 INSERT INTO `sys_role_menu`
-VALUES (2, 38);
+VALUES (1, 38);
 INSERT INTO `sys_role_menu`
-VALUES (2, 39);
+VALUES (1, 39);
 INSERT INTO `sys_role_menu`
-VALUES (2, 95);
+VALUES (1, 95);
 INSERT INTO `sys_role_menu`
-VALUES (2, 93);
+VALUES (1, 93);
 INSERT INTO `sys_role_menu`
-VALUES (2, 94);
+VALUES (1, 94);
 INSERT INTO `sys_role_menu`
-VALUES (2, 98);
+VALUES (1, 98);
 INSERT INTO `sys_role_menu`
-VALUES (2, 99);
+VALUES (1, 99);
 INSERT INTO `sys_role_menu`
-VALUES (2, 100);
+VALUES (1, 100);
 INSERT INTO `sys_role_menu`
-VALUES (2, 101);
+VALUES (1, 101);
 INSERT INTO `sys_role_menu`
-VALUES (2, 89);
+VALUES (1, 89);
 INSERT INTO `sys_role_menu`
-VALUES (2, 96);
+VALUES (1, 96);
 INSERT INTO `sys_role_menu`
-VALUES (2, 97);
+VALUES (1, 97);
 INSERT INTO `sys_role_menu`
-VALUES (2, 90);
+VALUES (1, 90);
 INSERT INTO `sys_role_menu`
-VALUES (2, 91);
+VALUES (1, 91);
 
 -- ----------------------------
 -- Table structure for sys_user
