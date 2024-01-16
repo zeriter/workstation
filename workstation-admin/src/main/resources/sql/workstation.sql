@@ -11,7 +11,7 @@
  Target Server Version : 80034 (8.0.34)
  File Encoding         : 65001
 
- Date: 16/01/2024 00:07:37
+ Date: 16/01/2024 22:50:39
 */
 
 SET NAMES utf8mb4;
@@ -135,7 +135,7 @@ CREATE TABLE `sys_menu`
     `keep_alive`  tinyint                                                       NULL     DEFAULT NULL COMMENT '【菜单】是否开启页面缓存(1:是 0:否)',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 107
+  AUTO_INCREMENT = 111
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci COMMENT = '菜单管理'
   ROW_FORMAT = Dynamic;
@@ -171,8 +171,8 @@ INSERT INTO `sys_menu`
 VALUES (33, 2, '0,1,2', '用户删除', 4, '', NULL, 'sys:user:delete', 1, 3, '', '', '2022-10-23 11:04:08',
         '2022-10-23 11:04:11', NULL, NULL);
 INSERT INTO `sys_menu`
-VALUES (36, 0, '0', '组件封装', 2, '/component', 'Layout', NULL, 1, 10, 'menu', '', '2022-10-31 09:18:44',
-        '2022-10-31 09:18:47', NULL, NULL);
+VALUES (36, 0, '0', '组件封装', 2, '/component', 'Layout', NULL, 1, 3, 'menu', '', '2022-10-31 09:18:44', NULL, NULL,
+        NULL);
 INSERT INTO `sys_menu`
 VALUES (37, 36, '0,36', '富文本编辑器', 1, 'wang-editor', 'demo/wang-editor', NULL, 1, 1, '', '', NULL, NULL, NULL, 1);
 INSERT INTO `sys_menu`
@@ -182,7 +182,7 @@ INSERT INTO `sys_menu`
 VALUES (39, 36, '0,36', '图标选择器', 1, 'icon-selector', 'demo/icon-selector', NULL, 1, 3, '', '',
         '2022-11-20 23:16:30', '2022-11-20 23:16:32', NULL, 1);
 INSERT INTO `sys_menu`
-VALUES (40, 0, '0', '系统工具', 2, '/api', 'Layout', NULL, 1, 7, 'api', '', '2022-02-17 22:51:20', NULL, 1, NULL);
+VALUES (40, 0, '0', '系统工具', 2, '/api', 'Layout', NULL, 1, 2, 'api', '', '2022-02-17 22:51:20', NULL, 1, NULL);
 INSERT INTO `sys_menu`
 VALUES (41, 40, '0,40', '接口文档', 1, 'api-doc', 'demo/api/knife4j', NULL, 1, 1, 'api', '', '2022-02-17 22:51:20',
         NULL, NULL, 1);
@@ -274,9 +274,9 @@ CREATE TABLE `sys_role`
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role`
-VALUES (1, '系统管理员', 'ADMIN', 2, 1, 1, 0, '2021-03-25 12:39:54', NULL);
+VALUES (1, '系统管理员', 'ADMIN', 1, 1, 1, 0, '2021-03-25 12:39:54', NULL);
 INSERT INTO `sys_role`
-VALUES (2, '普通角色', 'USER', 1, 1, 0, 0, NULL, NULL);
+VALUES (2, '普通角色', 'USER', 2, 1, 0, 0, NULL, NULL);
 INSERT INTO `sys_role`
 VALUES (3, '访问游客', 'GUEST', 3, 1, 2, 0, '2021-05-26 15:49:05', '2019-05-05 16:00:00');
 
@@ -357,31 +357,15 @@ VALUES (1, 37);
 INSERT INTO `sys_role_menu`
 VALUES (1, 38);
 INSERT INTO `sys_role_menu`
+VALUES (1, 97);
+INSERT INTO `sys_role_menu`
+VALUES (1, 90);
+INSERT INTO `sys_role_menu`
 VALUES (1, 39);
 INSERT INTO `sys_role_menu`
 VALUES (1, 95);
 INSERT INTO `sys_role_menu`
 VALUES (1, 93);
-INSERT INTO `sys_role_menu`
-VALUES (1, 94);
-INSERT INTO `sys_role_menu`
-VALUES (1, 98);
-INSERT INTO `sys_role_menu`
-VALUES (1, 99);
-INSERT INTO `sys_role_menu`
-VALUES (1, 100);
-INSERT INTO `sys_role_menu`
-VALUES (1, 101);
-INSERT INTO `sys_role_menu`
-VALUES (1, 89);
-INSERT INTO `sys_role_menu`
-VALUES (1, 96);
-INSERT INTO `sys_role_menu`
-VALUES (1, 97);
-INSERT INTO `sys_role_menu`
-VALUES (1, 90);
-INSERT INTO `sys_role_menu`
-VALUES (1, 91);
 
 -- ----------------------------
 -- Table structure for sys_user
