@@ -11,7 +11,7 @@
  Target Server Version : 80034 (8.0.34)
  File Encoding         : 65001
 
- Date: 16/01/2024 22:50:39
+ Date: 16/01/2024 23:27:48
 */
 
 SET NAMES utf8mb4;
@@ -135,7 +135,7 @@ CREATE TABLE `sys_menu`
     `keep_alive`  tinyint                                                       NULL     DEFAULT NULL COMMENT '【菜单】是否开启页面缓存(1:是 0:否)',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 111
+  AUTO_INCREMENT = 112
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci COMMENT = '菜单管理'
   ROW_FORMAT = Dynamic;
@@ -179,13 +179,10 @@ INSERT INTO `sys_menu`
 VALUES (38, 36, '0,36', '图片上传', 1, 'upload', 'demo/upload', NULL, 1, 2, '', '', '2022-11-20 23:16:30',
         '2022-11-20 23:16:32', NULL, 1);
 INSERT INTO `sys_menu`
-VALUES (39, 36, '0,36', '图标选择器', 1, 'icon-selector', 'demo/icon-selector', NULL, 1, 3, '', '',
-        '2022-11-20 23:16:30', '2022-11-20 23:16:32', NULL, 1);
+VALUES (40, 0, '0', '系统工具', 2, '/tools', 'Layout', NULL, 1, 2, 'api', '', '2022-02-17 22:51:20', NULL, 1, NULL);
 INSERT INTO `sys_menu`
-VALUES (40, 0, '0', '系统工具', 2, '/api', 'Layout', NULL, 1, 2, 'api', '', '2022-02-17 22:51:20', NULL, 1, NULL);
-INSERT INTO `sys_menu`
-VALUES (41, 40, '0,40', '接口文档', 1, 'api-doc', 'demo/api/knife4j', NULL, 1, 1, 'api', '', '2022-02-17 22:51:20',
-        NULL, NULL, 1);
+VALUES (41, 40, '0,40', '接口文档', 1, 'api', 'tools/knife4j', NULL, 1, 1, 'api', '', '2022-02-17 22:51:20', NULL, NULL,
+        1);
 INSERT INTO `sys_menu`
 VALUES (70, 3, '0,1,3', '角色新增', 4, '', NULL, 'sys:role:add', 1, 1, '', NULL, '2023-05-20 23:39:09',
         '2023-05-20 23:39:09', NULL, NULL);
@@ -235,17 +232,13 @@ INSERT INTO `sys_menu`
 VALUES (88, 2, '0,1,2', '重置密码', 4, '', NULL, 'sys:user:reset_pwd', 1, 4, '', NULL, '2023-05-21 00:49:18',
         '2023-05-21 00:49:18', NULL, NULL);
 INSERT INTO `sys_menu`
-VALUES (90, 36, '0,36', 'Websocket', 1, 'websocket', 'demo/websocket', NULL, 1, 3, '', '', '2022-11-20 23:16:30', NULL,
-        NULL, 1);
-INSERT INTO `sys_menu`
 VALUES (93, 36, '0,36', '签名', 1, 'signature', 'demo/signature', NULL, 1, 6, '', '', '2022-11-20 23:16:30',
-        '2022-11-20 23:16:32', NULL, 1);
-INSERT INTO `sys_menu`
-VALUES (95, 36, '0,36', '字典组件', 1, 'dict-demo', 'demo/dict', NULL, 1, 4, '', '', '2022-11-20 23:16:30',
         '2022-11-20 23:16:32', NULL, 1);
 INSERT INTO `sys_menu`
 VALUES (97, 36, '0,36', 'Icons', 1, 'icon-demo', 'demo/icons', NULL, 1, 2, '', '', '2022-11-20 23:16:30', NULL, NULL,
         1);
+INSERT INTO `sys_menu`
+VALUES (111, 40, '0,40', 'socket工具', 1, 'socket', 'tools/websocket', NULL, 1, 1, 'monitor', NULL, NULL, NULL, 0, 0);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -321,9 +314,9 @@ VALUES (1, 4);
 INSERT INTO `sys_role_menu`
 VALUES (1, 73);
 INSERT INTO `sys_role_menu`
-VALUES (1, 74);
-INSERT INTO `sys_role_menu`
 VALUES (1, 75);
+INSERT INTO `sys_role_menu`
+VALUES (1, 74);
 INSERT INTO `sys_role_menu`
 VALUES (1, 5);
 INSERT INTO `sys_role_menu`
@@ -351,6 +344,8 @@ VALUES (1, 40);
 INSERT INTO `sys_role_menu`
 VALUES (1, 41);
 INSERT INTO `sys_role_menu`
+VALUES (1, 111);
+INSERT INTO `sys_role_menu`
 VALUES (1, 36);
 INSERT INTO `sys_role_menu`
 VALUES (1, 37);
@@ -360,10 +355,6 @@ INSERT INTO `sys_role_menu`
 VALUES (1, 97);
 INSERT INTO `sys_role_menu`
 VALUES (1, 90);
-INSERT INTO `sys_role_menu`
-VALUES (1, 39);
-INSERT INTO `sys_role_menu`
-VALUES (1, 95);
 INSERT INTO `sys_role_menu`
 VALUES (1, 93);
 
