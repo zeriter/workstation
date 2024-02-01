@@ -7,9 +7,10 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>workstation-generator</artifactId>
-    <name>workstation-generator</name>
-    <description>generator代码模块</description>
+    <artifactId>workstation-engine</artifactId>
+    <name>workstation-engine</name>
+    <description>engine引擎模块</description>
+    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -17,11 +18,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.workstation</groupId>
-            <artifactId>workstation-common</artifactId>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>workstation-data-engine</module>
+    </modules>
 
 </project>

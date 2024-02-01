@@ -17,6 +17,7 @@
         <module>workstation-modules</module>
         <module>workstation-common</module>
         <module>workstation-generator</module>
+        <module>workstation-engine</module>
     </modules>
 
     <!--版本定义-->
@@ -129,6 +130,13 @@
             <dependency>
                 <groupId>com.workstation</groupId>
                 <artifactId>workstation-generator</artifactId>
+                <version>${workstation.version}</version>
+            </dependency>
+
+            <!--generator代码模块-->
+            <dependency>
+                <groupId>com.workstation</groupId>
+                <artifactId>workstation-engine</artifactId>
                 <version>${workstation.version}</version>
             </dependency>
 

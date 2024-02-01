@@ -3,25 +3,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.workstation</groupId>
-        <artifactId>workstation</artifactId>
+        <artifactId>workstation-engine</artifactId>
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>workstation-generator</artifactId>
-    <name>workstation-generator</name>
-    <description>generator代码模块</description>
+    <groupId>com.workstation</groupId>
+    <artifactId>workstation-data-engine</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.workstation</groupId>
-            <artifactId>workstation-common</artifactId>
-        </dependency>
-    </dependencies>
-
 </project>
