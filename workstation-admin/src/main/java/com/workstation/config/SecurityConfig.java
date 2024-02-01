@@ -57,33 +57,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(requestMatcherRegistry ->
-                        requestMatcherRegistry.requestMatchers(SecurityConstants.LOGIN_PATH).permitAll()
-                                .anyRequest().authenticated()
-                )
-                .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling(httpSecurityExceptionHandlingConfigurer ->
-                        httpSecurityExceptionHandlingConfigurer
-                                .authenticationEntryPoint(authenticationEntryPoint)
-                                .accessDeniedHandler(accessDeniedHandler)
-                )
-                .csrf(AbstractHttpConfigurer::disable)
-
-        ;
-        // 验证码校验过滤器
-        http.addFilterBefore(new VerifyCodeFilter(redisUtil), UsernamePasswordAuthenticationFilter.class);
-        // JWT 校验过滤器
-        http.addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
-    }
-
-    /**
-     * 不走过滤器链的放行配置
-     */
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
         RequestMappingHandlerMapping requestMappingHandlerMapping = (RequestMappingHandlerMapping) applicationContext.getBean("requestMappingHandlerMapping");
         Map<RequestMappingInfo, HandlerMethod> handlerMethodMap = requestMappingHandlerMapping.getHandlerMethods();
         Set<String> get = new HashSet<>();
@@ -112,23 +85,45 @@ public class SecurityConfig {
                 }
             }
         }
-        return (web) -> web.ignoring()
-                .requestMatchers(
-                        "/webjars/**",
-                        "/doc.html",
-                        "/swagger-resources/**",
-                        "/v3/api-docs/**",
-                        "/swagger-ui/**",
-                        "/swagger-ui.html",
-                        "/ws/**",
-                        "/ws-app/**"
+        http
+                .authorizeHttpRequests(requestMatcherRegistry ->
+                        requestMatcherRegistry
+                                // 放行登录接口
+                                .requestMatchers(SecurityConstants.LOGIN_PATH).permitAll()
+                                // 放行开放接口
+                                .requestMatchers(HttpMethod.GET, get.toArray(new String[0])).permitAll()
+                                .requestMatchers(HttpMethod.PATCH, patch.toArray(new String[0])).permitAll()
+                                .requestMatchers(HttpMethod.POST, post.toArray(new String[0])).permitAll()
+                                .requestMatchers(HttpMethod.PUT, put.toArray(new String[0])).permitAll()
+                                .requestMatchers(HttpMethod.DELETE, delete.toArray(new String[0])).permitAll()
+                                .requestMatchers(all.toArray(new String[0])).permitAll()
+                                // 放行静态资源
+                                .requestMatchers(
+                                        "/webjars/**",
+                                        "/doc.html",
+                                        "/swagger-resources/**",
+                                        "/v3/api-docs/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html",
+                                        "/ws/**",
+                                        "/ws-app/**").permitAll()
+                                .anyRequest().authenticated()
                 )
-                .requestMatchers(HttpMethod.GET, get.toArray(new String[0]))
-                .requestMatchers(HttpMethod.PATCH, patch.toArray(new String[0]))
-                .requestMatchers(HttpMethod.POST, post.toArray(new String[0]))
-                .requestMatchers(HttpMethod.PUT, put.toArray(new String[0]))
-                .requestMatchers(HttpMethod.DELETE, delete.toArray(new String[0]))
-                .requestMatchers(all.toArray(new String[0]));
+                .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(httpSecurityExceptionHandlingConfigurer ->
+                        httpSecurityExceptionHandlingConfigurer
+                                .authenticationEntryPoint(authenticationEntryPoint)
+                                .accessDeniedHandler(accessDeniedHandler)
+                )
+                .csrf(AbstractHttpConfigurer::disable)
+
+        ;
+        // 验证码校验过滤器
+        http.addFilterBefore(new VerifyCodeFilter(redisUtil), UsernamePasswordAuthenticationFilter.class);
+        // JWT 校验过滤器
+        http.addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
     }
 
     /**
