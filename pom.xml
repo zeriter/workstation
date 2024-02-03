@@ -134,10 +134,15 @@
                 <version>${workstation.version}</version>
             </dependency>
 
-            <!--generator代码模块-->
+            <!--engine引擎模块-->
             <dependency>
                 <groupId>com.workstation</groupId>
                 <artifactId>workstation-engine</artifactId>
+                <version>${workstation.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.workstation</groupId>
+                <artifactId>workstation-data-engine</artifactId>
                 <version>${workstation.version}</version>
             </dependency>
 

@@ -54,6 +54,11 @@
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.workstation</groupId>
+            <artifactId>workstation-data-engine</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
