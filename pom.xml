@@ -37,6 +37,7 @@
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <easyexcel.version>3.2.1</easyexcel.version>
         <minio.version>8.4.3</minio.version>
+        <quartz.version>2.3.2</quartz.version>
     </properties>
 
     <!--依赖声明-->
@@ -157,6 +158,13 @@
                 <groupId>io.minio</groupId>
                 <artifactId>minio</artifactId>
                 <version>${minio.version}</version>
+            </dependency>
+
+            <!--quartz-->
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workstation.modules.quartz.mapper.QuartzJobMapper">
+    <select id="findByIsPauseIsFalse" resultType="com.workstation.modules.quartz.domain.entity.QuartzJob">
+        SELECT * from sys_quartz_job WHERE is_pause = 0
+    </select>
+</mapper>
