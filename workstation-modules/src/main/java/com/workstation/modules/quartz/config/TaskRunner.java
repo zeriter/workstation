@@ -20,8 +20,8 @@ import java.util.List;
  * @date 2024/2/29 10:26 星期四
  **/
 @Component
-public class JobRunner implements ApplicationRunner {
-    private static final Logger log = LoggerFactory.getLogger(JobRunner.class);
+public class TaskRunner implements ApplicationRunner {
+    private static final Logger log = LoggerFactory.getLogger(TaskRunner.class);
     @Resource
     private QuartzJobMapper quartzJobMapper;
     @Resource

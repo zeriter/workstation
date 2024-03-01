@@ -1,10 +1,5 @@
 package com.workstation.modules.quartz.utils;
 
-import cn.hutool.extra.spring.SpringUtil;
-import cn.hutool.extra.template.Template;
-import cn.hutool.extra.template.TemplateConfig;
-import cn.hutool.extra.template.TemplateEngine;
-import cn.hutool.extra.template.TemplateUtil;
 import com.workstation.modules.quartz.domain.entity.QuartzJob;
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.JobExecutionContext;
@@ -13,10 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -53,8 +44,9 @@ public class ExecutionJob extends QuartzJobBean {
                 // @TODO执行子任务
             }
         } catch (Exception e) {
-            System.out.println("任务执行失败，任务名称：" + quartzJob.getJobName());
-            System.out.println("--------------------------------------------------------------");
+            e.printStackTrace();
+            log.info("任务执行失败，任务名称：" + quartzJob.getJobName());
+            log.info("--------------------------------------------------------------");
             long times = System.currentTimeMillis() - startTime;
             // 任务如果失败了则暂停
             if (quartzJob.getPauseAfterFailure() != null && quartzJob.getPauseAfterFailure()) {

@@ -67,3 +67,13 @@ jwt:
   secret-key: SecretKey012345678901234567890123456789012345678901234567890123456789
   # token 过期时间(单位:秒)
   expiration: 7200
+task:
+  pool:
+    # 核心线程池大小
+    core-pool-size: 10
+    # 最大线程数
+    max-pool-size: 30
+    # 活跃时间
+    keep-alive-seconds: 60
+    # 队列容量
+    queue-capacity: 10000
