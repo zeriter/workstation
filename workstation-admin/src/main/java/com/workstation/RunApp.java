@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.boot.system.ApplicationPid;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
@@ -25,6 +26,7 @@ public class RunApp {
 
     public static void main(String[] args) throws UnknownHostException {
         SpringApplication app = new SpringApplication(RunApp.class);
+        app.addListeners(new ApplicationPidFileWriter());
         ConfigurableApplicationContext application = app.run(args);
         Environment env = application.getEnvironment();
         logger.info("----------------------------------------------------------");
