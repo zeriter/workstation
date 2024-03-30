@@ -48,6 +48,6 @@ public class RunApp {
     @GetMapping("/")
     @Operation(summary = "健康检查", description = "健康检查")
     public String health() {
-        return "Backend service started successfully";
+        return "workstation service started successfully";
     }
 }
