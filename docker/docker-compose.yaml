@@ -2,6 +2,8 @@ services:
   redis-server:
     image: "redis:7.2.4"
     container_name: redis-server
+    ports:
+      - 2379:2379
     restart: always
     command: --requirepass redis@123
     networks:
@@ -15,6 +17,8 @@ services:
   mysql-server:
     image: "mysql:8.3.0"
     container_name: mysql-server
+    ports:
+      - 3306:3306
     mem_limit: 1g
     environment:
       MYSQL_ROOT_PASSWORD: root@123
@@ -78,6 +82,8 @@ services:
         condition: service_healthy
     networks:
       - workstation
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://workstation-server:8080/" ]
 networks:
   workstation:
 volumes:
