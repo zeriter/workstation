@@ -7,12 +7,12 @@
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
     <conversionRule conversionWord="wEx"
                     converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+    <!-- 日志控制台输出格式 -->
     <property name="log.pattern.color"
               value="%clr([%d{[yyyy-MM-dd hh:mm:ss]}]){red} %clr([%5p]) %clr([%15.15t]){yellow} %clr(%-40.40logger{40}){cyan} %clr(:){faint} %m%n%wEx"/>
-
+    <!-- 日志输出格式 -->
     <property name="log.pattern"
               value="%d{[yyyy-MM-dd hh:mm:ss]} [%5p] [%15.15t] %-40.40logger{40} : %m%n%wEx"/>
-
     <!-- 控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
