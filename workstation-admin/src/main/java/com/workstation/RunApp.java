@@ -29,8 +29,16 @@ import java.net.UnknownHostException;
 @Tag(name = "监控-健康检查")
 @MapperScan("com.workstation.**.mapper")
 public class RunApp {
+    /**
+     * 日志
+     */
     private static final Logger logger = LoggerFactory.getLogger(RunApp.class);
 
+    /**
+     * 启动入口函数
+     * @param args
+     * @throws UnknownHostException host获取异常
+     */
     public static void main(String[] args) throws UnknownHostException {
         SpringApplication app = new SpringApplication(RunApp.class);
         app.addListeners(new ApplicationPidFileWriter());
@@ -44,6 +52,10 @@ public class RunApp {
         logger.info("----------------------------------------------------------");
     }
 
+    /**
+     * 健康检查
+     * @return String 提示信息
+     */
     @OpenAuth
     @GetMapping("/")
     @Operation(summary = "健康检查", description = "健康检查")

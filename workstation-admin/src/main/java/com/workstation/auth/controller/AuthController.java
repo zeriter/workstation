@@ -37,15 +37,34 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+    /**
+     * 认证服务类
+     */
     @Resource
     private IAuthService authService;
+
+    /**
+     * 认证管理服务
+     */
     @Resource
     private AuthenticationManager authenticationManager;
+
+    /**
+     * jwt服务
+     */
     @Resource
     private JwtTokenProvider jwtTokenProvider;
+
+    /**
+     * redis工具类
+     */
     @Resource
     private RedisUtil redisUtil;
 
+    /**
+     * 获取验证码
+     * @return R<Dict> 验证码base64
+     */
     @Operation(summary = "获取验证码", description = "获取验证码")
     @GetMapping("/captcha")
     @OpenAuth
@@ -53,6 +72,12 @@ public class AuthController {
         return R.data(authService.captcha());
     }
 
+    /**
+     * 用户登录
+     * @param username 用户名称
+     * @param password 用户密码
+     * @return R<LoginResult> 用户信息
+     */
     @Operation(summary = "用户登录", description = "用户登录")
     @PostMapping("/login")
     public R<LoginResult> login(@Parameter(description = "用户名", example = "admin") @RequestParam String username,
@@ -64,6 +89,10 @@ public class AuthController {
         return R.data(new LoginResult(accessToken, Constants.TOKEN_PREFIX, null, null));
     }
 
+    /**
+     * 用户注销
+     * @return R 统一返回类
+     */
     @Operation(summary = "用户注销", description = "用户注销")
     @DeleteMapping("/logout")
     public R logout() {
