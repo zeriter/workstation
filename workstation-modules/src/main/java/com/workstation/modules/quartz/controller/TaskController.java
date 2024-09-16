@@ -1,12 +1,11 @@
 package com.workstation.modules.quartz.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.workstation.common.param.Option;
 import com.workstation.common.param.R;
+import com.workstation.modules.quartz.domain.form.QuartzForm;
+import com.workstation.modules.quartz.domain.query.QuartzPageQuery;
+import com.workstation.modules.quartz.domain.result.QuartzPageResult;
 import com.workstation.modules.quartz.service.ITaskService;
-import com.workstation.modules.system.domain.form.RoleForm;
-import com.workstation.modules.system.domain.query.RolePageQuery;
-import com.workstation.modules.system.domain.result.RolePageResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,8 +13,6 @@ import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @author ZERITER-ZHANG
@@ -25,14 +22,14 @@ import java.util.List;
  */
 @Tag(name = "任务-任务管理")
 @RestController
-@RequestMapping("/system/task")
+@RequestMapping("/system/quartz")
 public class TaskController {
     @Resource
     private ITaskService taskService;
 
     @Operation(summary = "保存任务", description = "保存任务")
     @PostMapping
-    public R<Boolean> save(@Valid @RequestBody RoleForm roleForm) {
+    public R<Boolean> save(@Valid @RequestBody QuartzForm quartzForm) {
         return R.data(Boolean.TRUE);
     }
 
@@ -44,37 +41,20 @@ public class TaskController {
 
     @Operation(summary = "修改任务", description = "修改任务")
     @PutMapping("/{id}")
-    public R<Boolean> edit(@Valid @RequestBody RoleForm roleForm) {
+    public R<Boolean> edit(@Valid @RequestBody QuartzForm quartzForm) {
         return R.data(Boolean.TRUE);
     }
 
     @Operation(summary = "任务列表", description = "任务列表")
     @GetMapping("/page")
-    public R<IPage<RolePageResult>> getRolePage(@ParameterObject RolePageQuery queryParams) {
+    public R<IPage<QuartzPageResult>> getQuartzPage(@ParameterObject QuartzPageQuery queryParams) {
         return R.success();
     }
 
     @Operation(summary = "任务详情", description = "任务详情")
-    @GetMapping("/{roleId}/form")
-    public R<RoleForm> detail(@Parameter(description = "任务ID") @PathVariable Long roleId) {
+    @GetMapping("/{quartzId}/form")
+    public R<QuartzForm> detail(@Parameter(description = "任务ID") @PathVariable Long quartzId) {
         return R.success();
     }
 
-    @Operation(summary = "任务下拉列表", description = "任务下拉列表")
-    @GetMapping("/options")
-    public R<List<Option>> listRoleOptions() {
-        return R.success();
-    }
-
-    @Operation(summary = "获取任务的菜单ID集合", description = "获取任务的菜单ID集合")
-    @GetMapping("/{roleId}/menuIds")
-    public R<List<Long>> getRoleMenuIds(@Parameter(description = "任务ID") @PathVariable Long roleId) {
-        return R.success();
-    }
-
-    @Operation(summary = "分配菜单(包括按钮权限)给任务", description = "分配菜单(包括按钮权限)给任务")
-    @PutMapping("/{roleId}/menus")
-    public R<Boolean> assignMenusToRole(@PathVariable Long roleId, @RequestBody List<Long> menuIds) {
-        return R.success();
-    }
 }
