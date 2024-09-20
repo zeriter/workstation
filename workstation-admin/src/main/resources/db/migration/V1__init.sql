@@ -1,17 +1,17 @@
 /*
- Navicat Premium Data Transfer
+ Navicat Premium Dump SQL
 
- Source Server         : localhost
+ Source Server         : 服务器
  Source Server Type    : MySQL
- Source Server Version : 80034 (8.0.34)
- Source Host           : localhost:3306
+ Source Server Version : 80300 (8.3.0)
+ Source Host           : 192.168.31.132:8002
  Source Schema         : workstation
 
  Target Server Type    : MySQL
- Target Server Version : 80034 (8.0.34)
+ Target Server Version : 80300 (8.3.0)
  File Encoding         : 65001
 
- Date: 02/03/2024 21:55:53
+ Date: 20/09/2024 23:23:12
 */
 
 SET NAMES utf8mb4;
@@ -178,6 +178,15 @@ INSERT INTO `sys_menu` VALUES (93, 36, '0,36', '签名', 1, 'signature', 'demo/s
 INSERT INTO `sys_menu` VALUES (97, 36, '0,36', 'Icons', 1, 'icon-demo', 'demo/icons', NULL, 1, 2, '', '', '2022-11-20 23:16:30', NULL, NULL, 1);
 INSERT INTO `sys_menu` VALUES (111, 40, '0,40', 'socket工具', 1, 'socket', 'tools/websocket', NULL, 1, 1, 'monitor', NULL, NULL, NULL, 0, 0);
 INSERT INTO `sys_menu` VALUES (116, 40, '0,40', '接口文档', 3, 'http://localhost:8080/doc.html#/home', NULL, NULL, 1, 1, 'shrink', NULL, NULL, NULL, 0, 0);
+INSERT INTO `sys_menu`
+VALUES (117, 1, '0,1', '任务管理', 1, 'quartz', 'system/quartz/index', NULL, 1, 6, 'document', NULL, NULL, NULL, NULL,
+        1);
+INSERT INTO `sys_menu`
+VALUES (118, 117, '0,1,117', '任务新增', 4, '', NULL, 'sys:quartz:add', 1, 1, '', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_menu`
+VALUES (119, 117, '0,1,117', '任务删除', 4, '', NULL, 'sys:quartz:delete', 1, 2, '', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_menu`
+VALUES (120, 117, '0,1,117', '任务编辑', 4, '', NULL, 'sys:quartz:edit', 1, 3, '', NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -241,6 +250,14 @@ INSERT INTO `sys_role_menu` VALUES (1, 84);
 INSERT INTO `sys_role_menu` VALUES (1, 85);
 INSERT INTO `sys_role_menu` VALUES (1, 86);
 INSERT INTO `sys_role_menu` VALUES (1, 87);
+INSERT INTO `sys_role_menu`
+VALUES (1, 117);
+INSERT INTO `sys_role_menu`
+VALUES (1, 118);
+INSERT INTO `sys_role_menu`
+VALUES (1, 119);
+INSERT INTO `sys_role_menu`
+VALUES (1, 120);
 INSERT INTO `sys_role_menu` VALUES (1, 40);
 INSERT INTO `sys_role_menu` VALUES (1, 111);
 INSERT INTO `sys_role_menu` VALUES (1, 116);
