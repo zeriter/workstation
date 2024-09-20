@@ -23,7 +23,7 @@ import static org.quartz.TriggerBuilder.newTrigger;
 public class QuartzManage {
     private static final Logger log = LoggerFactory.getLogger(QuartzManage.class);
     private static final String JOB_NAME = "TASK_";
-    @Resource(name = "scheduler")
+    @Resource
     private Scheduler scheduler;
 
     public void addJob(QuartzJob quartzJob) {
