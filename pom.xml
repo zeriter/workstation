@@ -16,7 +16,6 @@
         <module>workstation-admin</module>
         <module>workstation-modules</module>
         <module>workstation-common</module>
-        <module>workstation-generator</module>
     </modules>
 
     <!--版本定义-->
