@@ -74,6 +74,12 @@
                 <version>${mybatis-plus.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
             <!--druid 连接池-->
             <dependency>
                 <groupId>com.alibaba</groupId>

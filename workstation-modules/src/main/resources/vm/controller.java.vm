@@ -1,0 +1,60 @@
+package ${package.Controller};
+
+import com.workstation.common.param.R;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import ${package.Service}.${table.serviceName};
+import ${package.Parent}.domain.form.${entity}Form;
+import ${package.Parent}.domain.query.${entity}PageQuery;
+import ${package.Parent}.domain.result.${entity}PageResult;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * @author ${author}
+ * @version 0.0.1
+ * @description $!{table.comment}
+ * @date ${date}
+ */
+@Tag(name = "代码-$!{table.comment}管理")
+@RestController
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+public class ${table.controllerName} {
+        @Resource
+        private ${table.serviceName} service;
+
+        @Operation(summary = "保存$!{table.comment}", description = "保存$!{table.comment}")
+        @PostMapping
+        public R<Boolean> save(@RequestBody @Valid ${entity}Form form) {
+            return R.data(service.save${entity}(form));
+        }
+
+        @Operation(summary = "删除$!{table.comment}", description = "删除$!{table.comment}")
+        @DeleteMapping("/{ids}")
+        public R<Boolean> delete(@Parameter(description = "用户ID，多个以英文逗号(,)分割") @PathVariable String ids) {
+            return R.data(service.delete${entity}s(ids));
+        }
+
+        @Operation(summary = "修改$!{table.comment}", description = "修改$!{table.comment}")
+        @PutMapping("/{id}")
+        public R<Boolean> edit(@Parameter(description = "$!{table.comment}ID") @PathVariable Long id, @RequestBody @Validated ${entity}Form form) {
+            return R.data(service.update${entity}(id, form));
+        }
+
+        @Operation(summary = "$!{table.comment}列表", description = "$!{table.comment}列表")
+        @GetMapping("/page")
+        public R<IPage<${entity}PageResult>> users(@ParameterObject ${entity}PageQuery queryParams) {
+            return R.data(service.get${entity}Page(queryParams));
+        }
+
+        @Operation(summary = "$!{table.comment}详情", description = "$!{table.comment}详情")
+        @GetMapping("/{id}/form")
+        public R<${entity}Form> getDictForm(@Parameter(description = "$!{table.comment}ID") @PathVariable Long id) {
+            return R.data(service.getDictForm(id));
+        }
+}

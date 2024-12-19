@@ -1,0 +1,27 @@
+package ${package.Service};
+
+import ${package.Entity}.${entity};
+import ${package.Parent}.domain.form.${entity}Form;
+import ${package.Parent}.domain.query.${entity}PageQuery;
+import ${package.Parent}.domain.result.${entity}PageResult;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+/**
+ * @author ${author}
+ * @version 0.0.1
+ * @description $!{table.comment}
+ * @date ${date}
+ */
+public interface ${table.serviceName} extends IService<${entity}> {
+
+    public Boolean save${entity}(${entity}Form form);
+
+    public Boolean delete${entity}s(String ids);
+
+    public Boolean update${entity}(Long id, ${entity}Form form);
+
+    public IPage<${entity}PageResult> get${entity}Page(${entity}PageQuery queryParams);
+
+    public ${entity}Form get${entity}Form(Long id)
+}

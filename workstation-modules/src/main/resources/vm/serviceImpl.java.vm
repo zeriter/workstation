@@ -1,0 +1,70 @@
+package ${package.ServiceImpl};
+
+import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.StrUtil;
+import ${package.Entity}.${entity};
+import ${package.Parent}.domain.form.${entity}Form;
+import ${package.Parent}.domain.query.${entity}PageQuery;
+import ${package.Parent}.domain.result.${entity}PageResult;
+import ${package.Parent}.converter.${entity}Converter;
+import ${package.Mapper}.${table.mapperName};
+#if(${table.serviceInterface})
+import ${package.Service}.${table.serviceName};
+#end
+import ${superServiceImplClassPackage};
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import jakarta.annotation.Resource;
+import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * @author ${author}
+ * @version 0.0.1
+ * @description $!{table.comment}
+ * @date ${date}
+ */
+@Service
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}>#if(${table.serviceInterface}) implements ${table.serviceName}#end {
+    @Resource
+    private ${entity}Converter converter;
+
+    @Override
+    public Boolean save${entity}(${entity}Form form){
+        ${entity} entity = converter.form2Entity(form);
+        return this.save(entity);
+    }
+
+    @Override
+    public Boolean delete${entity}s(String ids) {
+        Assert.isTrue(StrUtil.isNotBlank(ids), "删除的ID不能为空");
+        List<Long> idLists = Arrays.stream(ids.split(","))
+                .map(Long::parseLong)
+                .toList();
+        return this.removeByIds(idLists);
+    }
+
+    @Override
+    public Boolean update${entity}(Long id, ${entity}Form form) {
+        ${entity} entity = converter.form2Entity(form);
+        return this.updateById(entity);
+    }
+
+    @Override
+    public IPage<${entity}PageResult> get${entity}Page(${entity}PageQuery queryParams) {
+        // 参数构建
+        int pageNum = queryParams.getPageNum();
+        int pageSize = queryParams.getPageSize();
+        Page<${entity}> page = new Page<>(pageNum, pageSize);
+        DateUtils.toDatabaseFormat(queryParams, "startTime", "endTime");
+        Page<${entity}> pageResults = this.baseMapper.selectPage(page, new QueryWrapper<>());
+        return converter.entity2Page(pageResults);
+    }
+
+    @Override
+    public ${entity}Form get${entity}Form(Long id) {
+        ${entity} entity = this.getById(id);
+        return converter.entity2Form(entity);
+    }
+}

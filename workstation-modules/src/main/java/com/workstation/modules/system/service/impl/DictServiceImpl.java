@@ -32,6 +32,7 @@ import java.util.stream.Collectors;
 public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements IDictService {
     @Resource
     private DictConverter dictConverter;
+
     @Override
     public List<Option> listDictOptions(String typeCode) {
         List<Dict> dictList = this.list(new LambdaQueryWrapper<Dict>()

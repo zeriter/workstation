@@ -1,0 +1,27 @@
+package ${package.Parent}.domain.query;
+
+#foreach($pkg in ${table.importPackages})
+import ${pkg};
+#end
+import com.workstation.common.base.BasePageQuery;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+/**
+ * @author ${author}
+ * @version 0.0.1
+ * @description $!{table.comment}
+ * @date ${date}
+ */
+@Schema(description = "角色分页查询对象")
+public class ${entity}PageQuery extends BasePageQuery {
+    @Schema(description = "关键字(角色名称/角色编码)")
+    private String keywords;
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+}
