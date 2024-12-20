@@ -4,7 +4,7 @@ package ${package.Entity};
 import ${pkg};
 #end
 import com.workstation.modules.system.domain.entity.BaseEntity;
-
+import com.baomidou.mybatisplus.annotation.TableName;
 /**
  * @author ${author}
  * @version 0.0.1

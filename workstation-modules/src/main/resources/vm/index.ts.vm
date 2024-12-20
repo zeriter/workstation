@@ -1,0 +1,69 @@
+import request from "@/utils/request";
+import {AxiosPromise} from "axios";
+import {${entity}Query, ${entity}PageResult, ${entity}Form} from "./${entity}Types";
+
+/**
+ * 获取$!{table.comment}分页数据
+ *
+ * @param queryParams
+ */
+export function get${entity}Page(
+    queryParams?: ${entity}Query
+): AxiosPromise<${entity}PageResult> {
+    return request({
+        url: "#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end/page",
+        method: "get",
+        params: queryParams,
+    });
+}
+
+/**
+ * 获取角色详情
+ *
+ * @param id
+ */
+export function get${entity}Form(id: number): AxiosPromise<${entity}Form> {
+    return request({
+        url: "#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end/" + id + "/form",
+        method: "get",
+    });
+}
+
+/**
+ * 添加角色
+ *
+ * @param data
+ */
+export function add${entity}(data: ${entity}Form) {
+    return request({
+        url: "#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end",
+        method: "post",
+        data: data,
+    });
+}
+
+/**
+ * 更新角色
+ *
+ * @param id
+ * @param data
+ */
+export function update${entity}(id: number, data: ${entity}Form) {
+    return request({
+        url: "#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end/" + id,
+        method: "put",
+        data: data,
+    });
+}
+
+/**
+ * 批量删除角色，多个以英文逗号(,)分割
+ *
+ * @param ids
+ */
+export function delete${entity}s(ids: string) {
+    return request({
+        url: "#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end/" + ids,
+        method: "delete",
+    });
+}

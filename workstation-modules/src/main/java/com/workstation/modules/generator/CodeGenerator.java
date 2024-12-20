@@ -19,8 +19,8 @@ import java.util.*;
  **/
 public class CodeGenerator {
     public static void main(String[] args) {
-        String moduleName = "user";
-        String tableName = "quartz_job";
+        String moduleName = "test";
+        String tableName = "test";
         FastAutoGenerator generator = FastAutoGenerator.create("jdbc:mysql://localhost:3306/workstation?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&allowMultiQueries=true", "root", "root@123")
                 // 全局配置
                 .globalConfig((scanner, builder) -> builder
@@ -58,6 +58,10 @@ public class CodeGenerator {
                     customFiles.add(new CustomFile.Builder().packageName("domain.query").fileName("PageQuery.java").templatePath("vm/query.java.vm").build());
                     customFiles.add(new CustomFile.Builder().packageName("domain.result").fileName("PageResult.java").templatePath("vm/result.java.vm").build());
                     customFiles.add(new CustomFile.Builder().packageName("converter").fileName("Converter.java").templatePath("vm/converter.java.vm").build());
+                    customFiles.add(new CustomFile.Builder().packageName("vue").fileName("index.vue").templatePath("vm/index.vue.vm").build());
+                    customFiles.add(new CustomFile.Builder().packageName("vue").fileName("Types.ts").templatePath("vm/types.ts.vm").build());
+                    customFiles.add(new CustomFile.Builder().packageName("vue").fileName("Index.ts").templatePath("vm/index.ts.vm").build());
+
                     builder.customFile(customFiles).build();
 
                 })

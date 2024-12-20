@@ -1,0 +1,326 @@
+<script lang="ts" setup>
+  import {
+    get${entity}Page,
+    update${entity},
+    get${entity}Form,
+    add${entity},
+    delete${entity}s
+  } from "@/api/${package.ModuleName}/${entity}Index";
+
+  import {${entity}PageVO, ${entity}Form, ${entity}Query} from "@/api/${package.ModuleName}/${entity}Types";
+
+  defineOptions({
+    name: "${entity}",
+    inheritAttrs: false,
+  });
+
+  const queryFormRef = ref(ElForm);
+  const ${entity}FormRef = ref(ElForm);
+
+  const loading = ref(false);
+  const ids = ref<number[]>([]);
+  const total = ref(0);
+
+  const queryParams = reactive<${entity}Query>({
+    pageNum: 1,
+    pageSize: 10,
+  });
+
+  const ${entity}List = ref<${entity}PageVO[]>();
+
+  const dialog = reactive({
+    title: "",
+    visible: false,
+  });
+
+  const formData = reactive<${entity}Form>({
+
+  });
+
+  const rules = reactive({
+    ## name: [{required: true, message: "请输入$!{table.comment}名称", trigger: "blur"}],
+    ## code: [{required: true, message: "请输入$!{table.comment}编码", trigger: "blur"}],
+    ## dataScope: [{required: true, message: "请选择数据权限", trigger: "blur"}],
+    ## status: [{required: true, message: "请选择状态", trigger: "blur"}],
+  });
+
+
+  const menuList = ref<OptionType[]>([]);
+
+  interface Checked${entity} {
+    id?: number;
+    name?: string;
+  }
+
+  let checked${entity}: Checked${entity} = reactive({});
+
+  /** 查询 */
+  function handleQuery() {
+    loading.value = true;
+    get${entity}Page(queryParams)
+        .then(({data}) => {
+            ${entity}List.value = data.records;
+          total.value = data.total;
+        })
+        .finally(() => {
+          loading.value = false;
+        });
+  }
+
+  /** 重置查询 */
+  function resetQuery() {
+    queryFormRef.value.resetFields();
+    queryParams.pageNum = 1;
+    handleQuery();
+  }
+
+  /** 行checkbox 选中事件 */
+  function handleSelectionChange(selection: any) {
+    ids.value = selection.map((item: any) => item.id);
+  }
+
+  /** 打开$!{table.comment}表单弹窗 */
+  function openDialog(id?: number) {
+    dialog.visible = true;
+    if (id) {
+      dialog.title = "修改$!{table.comment}";
+      get${entity}Form(id).then(({data}) => {
+        Object.assign(formData, data);
+      });
+    } else {
+      dialog.title = "新增$!{table.comment}";
+    }
+  }
+
+  /** $!{table.comment}保存提交 */
+  function handleSubmit() {
+      ${entity}FormRef.value.validate((valid: any) => {
+      if (valid) {
+        loading.value = true;
+        const id = formData.id;
+        if (id) {
+          update${entity}(id, formData)
+              .then(() => {
+                ElMessage.success("修改成功");
+                closeDialog();
+                resetQuery();
+              })
+              .finally(() => (loading.value = false));
+        } else {
+          add${entity}(formData)
+              .then(() => {
+                ElMessage.success("新增成功");
+                closeDialog();
+                resetQuery();
+              })
+              .finally(() => (loading.value = false));
+        }
+      }
+    });
+  }
+
+  /** 关闭表单弹窗 */
+  function closeDialog() {
+    dialog.visible = false;
+    resetForm();
+  }
+
+  /** 重置表单 */
+  function resetForm() {
+      ${entity}FormRef.value.resetFields();
+      ${entity}FormRef.value.clearValidate();
+
+    formData.id = undefined;
+    formData.sort = 1;
+    formData.status = 1;
+  }
+
+  /** 删除$!{table.comment} */
+  function handleDelete(id?: number) {
+    const deleteIds = [id || ids.value].join(",");
+    if (!deleteIds) {
+      ElMessage.warning("请勾选删除项");
+      return;
+    }
+
+    ElMessageBox.confirm("确认删除已选中的数据项?", "警告", {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      type: "warning",
+    }).then(() => {
+      loading.value = true;
+      delete${entity}s(deleteIds)
+          .then(() => {
+            ElMessage.success("删除成功");
+            resetQuery();
+          })
+          .finally(() => (loading.value = false));
+    });
+  }
+
+  onMounted(() => {
+    handleQuery();
+  });
+</script>
+
+<template>
+  <div class="app-container">
+    <div class="search-container">
+      <el-form ref="queryFormRef" :inline="true" :model="queryParams">
+        <el-form-item label="关键字" prop="keywords">
+          <el-input
+              v-model="queryParams.keywords"
+              clearable
+              placeholder="$!{table.comment}名称"
+              @keyup.enter="handleQuery"
+          />
+        </el-form-item>
+
+        <el-form-item>
+          <el-button type="primary" @click="handleQuery"
+          >
+            <i-ep-search/>
+            搜索
+          </el-button
+          >
+          <el-button @click="resetQuery">
+            <i-ep-refresh/>
+            重置
+          </el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+
+    <el-card class="table-container" shadow="never">
+      <template #header>
+        <el-button type="success" @click="openDialog()"
+        >
+          <i-ep-plus/>
+          新增
+        </el-button
+        >
+        <el-button
+            :disabled="ids.length === 0"
+            type="danger"
+            @click="handleDelete()"
+        >
+          <i-ep-delete/>
+          删除
+        </el-button
+        >
+      </template>
+
+      <el-table
+          ref="dataTableRef"
+          v-loading="loading"
+          :data="${entity}List"
+          border
+          highlight-current-row
+          @selection-change="handleSelectionChange"
+      >
+        <el-table-column align="center" type="selection" width="55"/>
+        #foreach($field in ${table.fields})
+          #if(${field.keyIdentityFlag})
+          #else
+            #if("$!field.comment" != "")
+              <el-table-column label="${field.comment}" min-width="100" prop="${field.propertyName}"/>
+            #else
+              <el-table-column label="${field.propertyName}" min-width="100" prop="${field.propertyName}"/>
+            #end
+          #end
+        #end
+        <el-table-column fixed="right" label="操作" width="220">
+          <template #default="scope">
+            <el-button
+                link
+                size="small"
+                type="primary"
+                @click="openDialog(scope.row.id)"
+            >
+              <i-ep-edit/>
+              编辑
+            </el-button>
+            <el-button
+                link
+                size="small"
+                type="primary"
+                @click="handleDelete(scope.row.id)"
+            >
+              <i-ep-delete/>
+              删除
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+
+      <pagination
+          v-if="total > 0"
+          v-model:limit="queryParams.pageSize"
+          v-model:page="queryParams.pageNum"
+          v-model:total="total"
+          @pagination="handleQuery"
+      />
+    </el-card>
+
+    <!-- $!{table.comment}表单弹窗 -->
+    <el-dialog
+        v-model="dialog.visible"
+        :title="dialog.title"
+        width="500px"
+        @close="closeDialog"
+    >
+      <el-form
+          ref="${entity}FormRef"
+          :model="formData"
+          :rules="rules"
+          label-width="100px"
+      >
+        #foreach($field in ${table.fields})
+          #if(${field.keyIdentityFlag})
+          #else
+              <el-form-item #if("$!field.comment" != "") label="${field.comment}" #else label="${field.propertyName}" #end prop="${field.propertyName}">
+                #if(${field.propertyType.equals("boolean")})
+                    <el-radio-group v-model="formData.${field.propertyName}">
+                      <el-radio :label="true">正常</el-radio>
+                      <el-radio :label="false">停用</el-radio>
+                    </el-radio-group>
+                #elseif(${field.propertyType.equals("LocalDateTime")}
+                || ${field.propertyType.equals("DateTime")}
+                || ${field.propertyType.equals("Date")}
+                || ${field.propertyType.equals("LocalTime")}
+                || ${field.propertyType.equals("LocalDate")} )
+                  <el-date-picker
+                          v-model="formData.${field.propertyName}"
+                          class="!w-[240px]"
+                          type="date"
+                          #if(${field.propertyType.equals("LocalDateTime")})
+                          format="YYYY-MM-DD HH:mm:ss"
+                          #else
+                          format="YYYY-MM-DD"
+                          #end
+                          format="YYYY-MM-DD HH:mm:ss"
+                  />
+                #elseif(${field.propertyType.equals("String")})
+                  <el-input v-model="formData.${field.propertyName}" placeholder="${field.propertyType}"/>
+                #else
+                  <el-input-number
+                          v-model="formData.${field.propertyName}"
+                          :min="0"
+                          controls-position="right"
+                          style="width: 100px"
+                  />
+                #end
+              </el-form-item>
+          #end
+        #end
+      </el-form>
+
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button type="primary" @click="handleSubmit">确 定</el-button>
+          <el-button @click="closeDialog">取 消</el-button>
+        </div>
+      </template>
+    </el-dialog>
+  </div>
+</template>

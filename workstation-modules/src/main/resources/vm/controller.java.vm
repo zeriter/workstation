@@ -55,6 +55,6 @@ public class ${table.controllerName} {
         @Operation(summary = "$!{table.comment}详情", description = "$!{table.comment}详情")
         @GetMapping("/{id}/form")
         public R<${entity}Form> getDictForm(@Parameter(description = "$!{table.comment}ID") @PathVariable Long id) {
-            return R.data(service.getDictForm(id));
+            return R.data(service.get${entity}Form(id));
         }
 }

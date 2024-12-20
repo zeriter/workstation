@@ -23,5 +23,5 @@ public interface ${table.serviceName} extends IService<${entity}> {
 
     public IPage<${entity}PageResult> get${entity}Page(${entity}PageQuery queryParams);
 
-    public ${entity}Form get${entity}Form(Long id)
+    public ${entity}Form get${entity}Form(Long id);
 }

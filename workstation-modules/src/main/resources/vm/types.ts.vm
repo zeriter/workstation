@@ -1,0 +1,40 @@
+/**
+ * $!{table.comment}查询参数
+ */
+export interface ${entity}Query extends PageQuery {
+    keywords?: string;
+}
+
+/**
+ * $!{table.comment}分页对象
+ */
+export interface ${entity}PageVO {
+    #foreach($field in ${table.fields})
+        #if("$!field.comment" != "")
+            /**
+             * ${field.comment}
+             */
+        #end
+        ${field.propertyName}?:#if(${field.propertyType.equals("boolean")}) boolean #elseif(${field.propertyType.equals("LocalDateTime")} || ${field.propertyType.equals("DateTime")} || ${field.propertyType.equals("Date")}) Date #elseif(${field.propertyType.equals("String")}) string #else number #end;
+
+    #end
+}
+
+/**
+ * $!{table.comment}分页
+ */
+export type ${entity}PageResult = PageResult<${entity}PageVO[]>;
+
+/**
+ * $!{table.comment}表单对象
+ */
+export interface ${entity}Form {
+    #foreach($field in ${table.fields})
+        #if("$!field.comment" != "")
+        /**
+         * ${field.comment}
+         */
+        #end
+        ${field.propertyName}?:#if(${field.propertyType.equals("boolean")}) boolean #elseif(${field.propertyType.equals("LocalDateTime")} || ${field.propertyType.equals("DateTime")} || ${field.propertyType.equals("Date")} || ${field.propertyType.equals("LocalTime")} || ${field.propertyType.equals("LocalDate")}) Date #elseif(${field.propertyType.equals("String")}) string #else number #end;
+    #end
+}
